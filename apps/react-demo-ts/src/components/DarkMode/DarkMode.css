@@ -1,0 +1,8 @@
+.wrapper {
+  height: 100vh;
+  background-color: var(--bkg-color);
+}
+
+.wrapper > h2 ,.wrapper > p {
+  color: var(--text-color);
+}

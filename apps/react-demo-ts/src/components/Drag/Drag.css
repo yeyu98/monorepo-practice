@@ -1,0 +1,27 @@
+.source, .target {
+  width: 200px;
+  height: 80px;
+  background-color: blueviolet;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 10px;
+}
+
+.self {
+  width: 60px;
+  height: 20px;
+  background-color: palegoldenrod;
+}
+
+.dragging {
+  opacity: .5;
+}
+
+.dragover {
+  background-color: purple;
+}
+
+.input {
+  max-width: 500px;
+}
