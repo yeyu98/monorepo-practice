@@ -2,7 +2,7 @@
  * @Author: xiaohu
  * @Date: 2023-03-10 10:25:29
  * @LastEditors: xiaohu
- * @LastEditTime: 2023-06-21 14:48:34
+ * @LastEditTime: 2023-06-22 14:05:00
  * @FilePath: \Explores\apps\react-demo-ts\src\pages\NewDemoPage.tsx
  * @Description: 
  */
@@ -18,10 +18,12 @@ interface ModuleInfo {
 function NewDemoPage(props: Props) {
   const {} = props
   const [moduleInfoList, setModuleInfoList] = useState<ModuleInfo[]>([])
+  const [currentModule, setCurrentModule] = useState<string>('Animation')
   // 根据目录生成按钮以及按钮对应的模块
 
   const handleClick = (moduleName: string) => {
-    console.log(moduleName)
+    if(moduleName === currentModule) return
+    setCurrentModule(moduleName)
   }
 
   useEffect(() => {
@@ -30,6 +32,7 @@ function NewDemoPage(props: Props) {
     for(let key in modules) {
       const keys = key.split('/')
       const Component = lazy<any>(modules[key])
+      console.log(typeof modules[key])
       _moduleInfoList.push({
         moduleName: keys[2],
         Component
@@ -47,19 +50,22 @@ function NewDemoPage(props: Props) {
         })
       }
       <hr />
-      {
-        moduleInfoList.map(moduleInfo => {
-          const LazyComponent = moduleInfo.Component
-          return <>
-            {
-              <Suspense fallback={<div>loading...</div>}>
-                <LazyComponent />
-              </Suspense>
-            }
-          </>
-        })
-
-      }
+      <div className='flex'>
+        {
+          moduleInfoList.map(moduleInfo => {
+            const LazyComponent = moduleInfo.Component
+            return <>
+              { 
+                currentModule === moduleInfo.moduleName ? <>
+                  <Suspense fallback={<div>loading...</div>}>
+                    <LazyComponent />
+                  </Suspense>
+                </> : null
+              }
+            </>
+          })
+        }
+      </div>
     </>
   )
 }

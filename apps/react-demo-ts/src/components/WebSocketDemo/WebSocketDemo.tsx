@@ -47,7 +47,7 @@ function WebSocketDemo(props: Props) {
     <div>{userInfo?.name}</div>
     <div>{userInfo.children.name}</div>
     <div>{userInfo?.age}</div>
-    <h3>{title.name}</h3>
+    <h3>"我是一只猫"</h3>
    </> 
   )
 }
