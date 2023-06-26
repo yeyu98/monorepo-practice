@@ -2,8 +2,8 @@
  * @Author: xiaohu
  * @Date: 2023-03-03 10:32:42
  * @LastEditors: xiaohu
- * @LastEditTime: 2023-06-20 19:52:34
- * @FilePath: \react-demo-ts\src\router\index.tsx
+ * @LastEditTime: 2023-06-26 20:04:24
+ * @FilePath: \Explores\apps\react-demo-ts\src\router\index.tsx
  * @Description: 
  */
 import { createBrowserRouter } from "react-router-dom"
@@ -42,7 +42,7 @@ export default createBrowserRouter([
     element: <Craft />
   },
   {
-    path: "/record",
+    path: "/NewDemoPage",
     element: <NewDemoPage />
   },
   {
