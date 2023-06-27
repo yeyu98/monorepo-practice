@@ -2,7 +2,7 @@ import React from 'react'
 
 interface Props {}
 
-function Craft(props: Props) {
+function Demos(props: Props) {
   const {} = props
 
   return (
@@ -10,4 +10,4 @@ function Craft(props: Props) {
   )
 }
 
-export default Craft
+export default Demos

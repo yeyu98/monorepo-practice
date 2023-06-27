@@ -1,3 +1,11 @@
+/*
+ * @Author: xiaohu
+ * @Date: 2023-06-27 11:31:53
+ * @LastEditors: xiaohu
+ * @LastEditTime: 2023-06-27 11:33:18
+ * @FilePath: \Explores\apps\react-demo-ts\src\components\FileReaderC\FileReaderC.tsx
+ * @Description: 
+ */
 import React, { useState } from 'react'
 
 
@@ -5,7 +13,7 @@ interface Props {}
 
 // 关于FileReader的使用 -- 前端读取文件
 
-function Demo(props: Props) {
+function FileReaderC(props: Props) {
   const {} = props
   const [url, setUrl] = useState<string>('')
 
@@ -14,14 +22,7 @@ function Demo(props: Props) {
     const file = e.target.files[0]
     const blob = new Blob([file])
     const url = URL.createObjectURL(blob)
-    // const image = new Image(100, 100)
-    // image.src = url
-    // image.onload = (e) => {
-    //   console.log("图片加载 --->>>", e)
-    // }
     setUrl(url)
-
-
     const fileReader = new FileReader()
     fileReader.onload = (e) => {
       console.log(e.target?.result)
@@ -42,4 +43,4 @@ function Demo(props: Props) {
   )
 }
 
-export default Demo
+export default FileReaderC

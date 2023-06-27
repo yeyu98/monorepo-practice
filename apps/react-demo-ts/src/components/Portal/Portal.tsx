@@ -1,11 +1,4 @@
-/*
- * @Author: xiaohu
- * @Date: 2023-06-21 10:51:04
- * @LastEditors: xiaohu
- * @LastEditTime: 2023-06-21 11:52:25
- * @FilePath: \Explores\apps\react-demo-ts\src\pages\Craft.tsx
- * @Description: 
- */
+
 import React from 'react'
 import { createPortal } from "react-dom"
 
@@ -17,8 +10,7 @@ const Test = () => {
   )
 }
 
-
-function Craft(props: Props) {
+function Portal(props: Props) {
   const {} = props
 
   return (
@@ -32,4 +24,4 @@ function Craft(props: Props) {
   )
 }
 
-export default Craft
+export default Portal
