@@ -2,15 +2,15 @@
  * @Author: xiaohu
  * @Date: 2022-12-07 15:34:10
  * @LastEditors: xiaohu
- * @LastEditTime: 2023-06-19 11:50:44
- * @FilePath: \react-demo-ts\src\App.tsx
+ * @LastEditTime: 2023-06-27 11:48:11
+ * @FilePath: \Explores\apps\react-demo-ts\src\App.tsx
  * @Description: 
  */
-import { FC, useEffect, useRef, useState } from "react"
-import { useNavigate, useLocation } from "react-router"
+import { FC, useEffect, useState, Fragment } from "react"
+import { useNavigate } from "react-router"
 import { Button } from "antd"
 import router from "./router/index"
-import './App.css'
+import './App.less'
 interface IProps {
 
 }
@@ -37,15 +37,14 @@ const App: FC<IProps> = (props) => {
   return (
     <div className="App">
       {
-        navList?.map(nav => {
-          return <>
+        navList?.map((nav, index) => {
+          return <Fragment key={nav}>
             <Button 
               className={nav}
               type="primary"
               onClick={e => navigate(`/${nav}`)} 
-              key={nav}
             >{nav}</Button>
-          </>
+          </Fragment>
         })
       }
     </div>
