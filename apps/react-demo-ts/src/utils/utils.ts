@@ -35,3 +35,7 @@ export const removeLocalStorage = (key: string) => {
     console.log('err --->>>', err);
   }
 };
+
+export const getModuleList = (path: string) => {
+
+}
