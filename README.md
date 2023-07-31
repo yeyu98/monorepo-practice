@@ -1,8 +1,8 @@
 <!--
  * @Author: xiaohu
  * @Date: 2023-06-21 11:24:03
- * @LastEditors: xiaohu
- * @LastEditTime: 2023-06-27 14:24:30
+ * @LastEditors: lzy-Jerry
+ * @LastEditTime: 2023-07-31 22:14:39
  * @FilePath: \Explores\README.md
  * @Description: 
 -->
@@ -24,4 +24,15 @@
   corePlugins: {
     preflight: false
   }
-- 
+
+
+
+- BadApple
+  - 通过canvas渲染视频的每一帧画面；
+  - 将每一帧画面灰度化处理，灰度化算法将r、g、b分别赋值gray；
+    - gray = (r*19595 + g*38469 + b*7472) >> 16；
+  - 根据灰度化之后的rgba对图片进行二值化处理；
+    - 可能存在一些模糊、噪音通过高斯滤波函数将其处理；
+    - 二值化和高斯滤波分别该用什么算法呢？
+  - 将转换后的rgb根据255 / 0判断将其转换成字符渲染到html中；
+    - 真实的canvas单个像素非常的小该如何和单个字符对应呢？
