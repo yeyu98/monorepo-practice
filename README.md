@@ -2,7 +2,7 @@
  * @Author: xiaohu
  * @Date: 2023-06-21 11:24:03
  * @LastEditors: lzy-Jerry
- * @LastEditTime: 2023-07-31 22:14:39
+ * @LastEditTime: 2023-07-31 23:41:45
  * @FilePath: \Explores\README.md
  * @Description: 
 -->
@@ -25,7 +25,10 @@
     preflight: false
   }
 
+canvas
 
+- 通过ImageData可以对canvas进行像素级操作；
+  - 读取第w行 第h列像素： (w * (canvas.width) + h )* 4
 
 - BadApple
   - 通过canvas渲染视频的每一帧画面；
@@ -35,4 +38,7 @@
     - 可能存在一些模糊、噪音通过高斯滤波函数将其处理；
     - 二值化和高斯滤波分别该用什么算法呢？
   - 将转换后的rgb根据255 / 0判断将其转换成字符渲染到html中；
+  - 可以通过fillText在canvas上面绘制字符；  
     - 真实的canvas单个像素非常的小该如何和单个字符对应呢？
+- 图片取色器
+- 图片放大器
