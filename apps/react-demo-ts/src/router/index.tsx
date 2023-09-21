@@ -2,7 +2,7 @@
  * @Author: xiaohu
  * @Date: 2023-03-03 10:32:42
  * @LastEditors: lzy-Jerry
- * @LastEditTime: 2023-07-29 21:06:43
+ * @LastEditTime: 2023-09-21 20:53:11
  * @FilePath: \Explores\apps\react-demo-ts\src\router\index.tsx
  * @Description: 
  */
@@ -11,7 +11,7 @@ import App from "@/App"
 import Demos from "@/pages/Demos"
 import DanceText from "@/pages/DanceText"
 import Series from "@/pages/Series"
-import Test from "@/pages/Test"
+import Record from "@/pages/Record"
 
 
 export default createBrowserRouter([
@@ -32,7 +32,7 @@ export default createBrowserRouter([
     element: <Series />
   },
   {
-    path: "/test",
-    element: <Test />
+    path: "/record",
+    element: <Record />
   },
 ])
