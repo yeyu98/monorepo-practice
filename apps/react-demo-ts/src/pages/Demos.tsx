@@ -2,7 +2,7 @@
  * @Author: xiaohu
  * @Date: 2023-06-27 11:25:29
  * @LastEditors: lzy-Jerry
- * @LastEditTime: 2023-09-21 22:27:11
+ * @LastEditTime: 2023-09-26 21:17:13
  * @FilePath: \Explores\apps\react-demo-ts\src\pages\Demos.tsx
  * @Description: 
  */
@@ -51,7 +51,7 @@ function Demos(props: Props) {
     console.log("🚀🚀🚀 ~ file: Demos.tsx:46 ~ handleClick ~ moduleInfoMapRef.current--->>>", moduleInfoMapRef.current)
     const currentModule = modules?.find(module => module.moduleName === moduleName)
     console.log("🚀🚀🚀 ~ file: Demos.tsx:47 ~ handleClick ~ currentModule--->>>", currentModule?.Component)
-    // setCurrentComponents(currentModule?.Component)
+    setCurrentComponents(currentModule?.Component)
   }
 
   /**
@@ -104,15 +104,17 @@ function Demos(props: Props) {
   }, [])
   return (
     <>
-      <div className='flex'>
-        <div className='flex-1'>
+      <div className='flex items-start'>
+        <div className='flex-1 mr-5'>
           <h3>模块区</h3>
           <Collapse accordion items={moduleList} />
         </div>
-        <div className='flex-1 overflow-y-auto'>
+        <div className='flex-1 overflow-y-auto leading-normal items-start'>
           <h3>展示区</h3>
           <Suspense fallback={'loading...'}>
-            {/* <CurrentComponent /> */}
+            {
+              CurrentComponent &&  <CurrentComponent />
+            }
           </Suspense>
         </div>
       </div>
