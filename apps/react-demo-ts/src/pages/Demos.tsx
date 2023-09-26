@@ -2,12 +2,12 @@
  * @Author: xiaohu
  * @Date: 2023-06-27 11:25:29
  * @LastEditors: lzy-Jerry
- * @LastEditTime: 2023-09-26 21:17:13
+ * @LastEditTime: 2023-09-26 21:21:37
  * @FilePath: \Explores\apps\react-demo-ts\src\pages\Demos.tsx
  * @Description: 
  */
 import React, { useEffect, useState, lazy, Suspense, useRef } from 'react'
-import { Button, Collapse } from 'antd';
+import { Button, Collapse, Empty } from 'antd';
 
 interface Props {}
 interface ModuleInfo {
@@ -113,7 +113,7 @@ function Demos(props: Props) {
           <h3>展示区</h3>
           <Suspense fallback={'loading...'}>
             {
-              CurrentComponent &&  <CurrentComponent />
+              CurrentComponent ?  <CurrentComponent /> : <Empty />
             }
           </Suspense>
         </div>
