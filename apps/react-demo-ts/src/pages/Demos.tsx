@@ -2,7 +2,7 @@
  * @Author: xiaohu
  * @Date: 2023-06-27 11:25:29
  * @LastEditors: lzy-Jerry
- * @LastEditTime: 2023-09-26 21:21:37
+ * @LastEditTime: 2023-09-26 21:30:56
  * @FilePath: \Explores\apps\react-demo-ts\src\pages\Demos.tsx
  * @Description: 
  */
@@ -105,7 +105,7 @@ function Demos(props: Props) {
   return (
     <>
       <div className='flex items-start'>
-        <div className='flex-1 mr-5'>
+        <div className='mr-5'>
           <h3>模块区</h3>
           <Collapse accordion items={moduleList} />
         </div>
