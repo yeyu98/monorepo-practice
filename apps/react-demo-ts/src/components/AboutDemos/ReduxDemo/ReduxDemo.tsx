@@ -2,7 +2,7 @@
  * @Author: lzy-Jerry
  * @Date: 2023-10-10 21:38:46
  * @LastEditors: lzy-Jerry
- * @LastEditTime: 2023-10-10 22:21:20
+ * @LastEditTime: 2023-10-11 00:17:33
  * @Description: 
  */
 import React, { useEffect } from 'react'
@@ -17,14 +17,16 @@ type Props = {
     setCount: any
 } & AppReducerState
 function ReduxDemo(props: Props) {
-    const {count, inputValue, setInputValue, setCount} = props
+    const {count, inputValue } = props
+    // const { count, inputValue } = store.getState().AppReducer
+    const { setCount, setInputValue } = appAction
     const handleClick = () => {
         const _count = count + 1
         setCount(_count)
     }
 
     useEffect(() => {
-        console.log(store.getState(), count)
+        console.log(store.getState().AppReducer, count)
     })
 
     return (
@@ -56,4 +58,20 @@ const mapDispatchToProps = () => {
         setInputValue
     }
 }
+
+/***/ 
+
+/**
+ * Provider：在全局注入store & 创建了一个订阅器（如果内部的store和传入的store不一致则会通知订阅者的更新），将两者的数据通过context传入给子孙组件；
+ * Subscription
+ *  创建订阅器订阅器中有清空、通知、获取监听者、订阅（添加监听者）；
+ *  通知订阅者
+ * */ 
+
+/**
+ * connect 做了什么事情呢？
+ * 
+ * 
+*/
+
 export default connect(mapStateToProps, mapDispatchToProps)(ReduxDemo) 
