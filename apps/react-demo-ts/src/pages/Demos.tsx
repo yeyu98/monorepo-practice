@@ -2,7 +2,7 @@
  * @Author: xiaohu
  * @Date: 2023-06-27 11:25:29
  * @LastEditors: lzy-Jerry
- * @LastEditTime: 2023-09-26 21:30:56
+ * @LastEditTime: 2023-10-10 21:58:23
  * @FilePath: \Explores\apps\react-demo-ts\src\pages\Demos.tsx
  * @Description: 
  */
@@ -48,9 +48,7 @@ function Demos(props: Props) {
     if(modulesKey === currentModulesKey) return
     setLocalStorage(modulesKey)
     const modules = moduleInfoMapRef.current.get(modulesKey)
-    console.log("🚀🚀🚀 ~ file: Demos.tsx:46 ~ handleClick ~ moduleInfoMapRef.current--->>>", moduleInfoMapRef.current)
     const currentModule = modules?.find(module => module.moduleName === moduleName)
-    console.log("🚀🚀🚀 ~ file: Demos.tsx:47 ~ handleClick ~ currentModule--->>>", currentModule?.Component)
     setCurrentComponents(currentModule?.Component)
   }
 
