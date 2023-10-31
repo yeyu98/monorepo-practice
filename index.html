@@ -1,0 +1,43 @@
+<!--
+ * @Author: lzy-Jerry
+ * @Date: 2023-10-30 22:09:27
+ * @LastEditors: lzy-Jerry
+ * @LastEditTime: 2023-10-30 22:31:32
+ * @Description: 
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        const letterCombination = (data) => {
+            const result = []
+            const backTracking = (data, index = 0, branch = []) => {
+                const treeDepth = data.length
+                if (index === treeDepth) {
+                result.push(branch.join(''))
+                return
+                }
+                const temps = data[index]
+                for (let i = 0; i < temps.length; i++) {
+                branch.push(temps[i])
+                backTracking(data, index+1, branch)
+                branch.pop()
+                }
+            }
+            backTracking(data, 0, [])
+            return result
+        }
+        const dataSets = [
+            ['zhong', 'chong'],
+            ['yi', 'xi'],
+            ['ze', 'xi']
+        ]
+        console.log(letterCombination(dataSets))
+    </script>
+</body>
+</html>

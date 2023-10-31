@@ -2,7 +2,7 @@
  * @Author: lzy-Jerry
  * @Date: 2023-10-10 21:38:46
  * @LastEditors: lzy-Jerry
- * @LastEditTime: 2023-10-11 00:17:33
+ * @LastEditTime: 2023-10-11 23:35:51
  * @Description: 
  */
 import React, { useEffect } from 'react'
@@ -68,10 +68,16 @@ const mapDispatchToProps = () => {
  *  通知订阅者
  * */ 
 
+
 /**
  * connect 做了什么事情呢？
+ *  
  * 
- * 
+ * wrapWithConnect(Component)：connect的高阶组件入参connect包裹的组件也就是我们所使用react-redux的组件
+ * return hoistStatics(targetComponent, sourceComponent)：把source组件的对象属性赋值给target组件，高阶组件的返回值（这样做能干什么呢？ ）
+ *  ConnectFunction(props)：生成加工之后的组件
+ *      selectorFactoryOptions主要包含被包裹的组件（也就是我们使用connect的组件）、initMapStateToProps、initMapDispatchToProps、initMergeProps；
+ *        
 */
 
 export default connect(mapStateToProps, mapDispatchToProps)(ReduxDemo) 
