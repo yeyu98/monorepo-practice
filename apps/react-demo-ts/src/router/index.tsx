@@ -1,8 +1,8 @@
 /*
  * @Author: Jerry
  * @Date: 2023-03-03 10:32:42
- * @LastEditors: lzy-Jerry
- * @LastEditTime: 2023-09-26 21:28:18
+ * @LastEditors: yeyu98
+ * @LastEditTime: 2024-01-03 22:14:43
  * @FilePath: \Explores\apps\react-demo-ts\src\router\index.tsx
  * @Description: 
  */
@@ -11,6 +11,7 @@ import App from "@/App"
 import Demos from "@/pages/Demos"
 import DanceText from "@/pages/DanceText"
 import Series from "@/pages/Series"
+import NestTest from "@/pages/NestTest"
 
 
 export default createBrowserRouter([
@@ -29,5 +30,9 @@ export default createBrowserRouter([
   {
     path: "/series",
     element: <Series />
+  },
+  {
+    path: "/nestTest",
+    element: <NestTest />
   },
 ])
