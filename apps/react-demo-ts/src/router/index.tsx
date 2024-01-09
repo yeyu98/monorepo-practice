@@ -2,7 +2,7 @@
  * @Author: Jerry
  * @Date: 2023-03-03 10:32:42
  * @LastEditors: yeyu98
- * @LastEditTime: 2024-01-03 22:14:43
+ * @LastEditTime: 2024-01-09 21:58:22
  * @FilePath: \Explores\apps\react-demo-ts\src\router\index.tsx
  * @Description: 
  */
@@ -12,7 +12,7 @@ import Demos from "@/pages/Demos"
 import DanceText from "@/pages/DanceText"
 import Series from "@/pages/Series"
 import NestTest from "@/pages/NestTest"
-
+import Magnifier from "@/pages/Magnifier/Magnifier"
 
 export default createBrowserRouter([
   {
@@ -35,4 +35,8 @@ export default createBrowserRouter([
     path: "/nestTest",
     element: <NestTest />
   },
+  {
+    path: '/magnifier',
+    element: <Magnifier />
+  }
 ])
