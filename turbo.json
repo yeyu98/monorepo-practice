@@ -9,7 +9,7 @@
     "lint": {},
     "start": {
       "dependsOn": ["^start"],
-      "cache": false,
+      "cache": true,
       "persistent": true
     }
   }
