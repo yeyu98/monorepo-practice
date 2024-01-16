@@ -2,7 +2,7 @@
  * @Author: yeyu98
  * @Date: 2024-01-09 21:41:08
  * @LastEditors: yeyu98
- * @LastEditTime: 2024-01-16 21:43:54
+ * @LastEditTime: 2024-01-16 23:13:52
  * @Description: 
  */
 import {useMemo, useRef, useState, MouseEvent} from 'react'
@@ -18,7 +18,7 @@ function Magnifier(props: Props) {
     const {} = props
     const containerRef = useRef<HTMLDivElement>(null)
     const imageRef = useRef<HTMLImageElement>(null)
-    const magnifierRef = useRef<HTMLDivElement>(null)
+    const magnifierRef = useRef<HTMLCanvasElement>(null)
     const [magnifierPosition, setMagnifierPosition] = useState<Position>({x: 0, y: 0})
     const [isHover, setIsHover] = useState<boolean>(false)
 
@@ -48,6 +48,18 @@ function Magnifier(props: Props) {
         }
     }
 
+    const zoomIn = (mouseX: number, mouseY: number) => {
+        if(magnifierRef.current && imageRef.current) {
+            const { offsetWidth, offsetHeight } = magnifierRef.current
+            // 图片绘制到canvas默认会被放大是因为绘制的是原图而不是容器大小的图片？
+            // 看来是的
+            const ctx = magnifierRef.current.getContext('2d')
+            ctx!.clearRect(0, 0, offsetHeight, offsetHeight)
+            // sw sh 控制的是放大的倍速 mw * 2 是正常的大小，再要放大就要不断缩小sw sh的大小了
+            ctx!.drawImage(imageRef.current, mouseX, mouseY,  offsetWidth * 2,  offsetHeight * 2, 0, 0, offsetWidth, offsetHeight)
+        }
+    }
+
     const handleMouseMove = (event: MouseEvent<HTMLDivElement>) => {
         event.preventDefault()
         // offsetX 鼠标位置相对鼠标触发事件元素的位置 如果有内外边距可能会不精准
@@ -62,8 +74,10 @@ function Magnifier(props: Props) {
             // clientX - left - magnifierRef.current.offsetWidth / 2 将鼠标位置移动到容器元素中心
             const magnifierWidth = magnifierRef.current.offsetWidth
             const magnifierHeight =magnifierRef.current.offsetHeight
-            let _x = clientX - left - magnifierWidth / 2
-            let _y = clientY - top - magnifierHeight / 2
+            const mouseX = clientX - left
+            const mouseY = clientY - top
+            let _x = mouseX  - magnifierWidth / 2
+            let _y = mouseY - magnifierHeight / 2
             const _xBoundary = containerRef.current.offsetWidth - magnifierWidth
             const _yBoundary = containerRef.current.offsetHeight - magnifierHeight
             if(_x < 0) {
@@ -82,6 +96,7 @@ function Magnifier(props: Props) {
                 x: _x,
                 y: _y
             })
+            zoomIn(mouseX, mouseY)
         }
     }
 
@@ -96,7 +111,8 @@ function Magnifier(props: Props) {
             <div ref={containerRef} onMouseEnter={handleMouseEnter} onMouseMove={handleMouseMove} onMouseLeave={handleMouseLeave} className={styles['wrapper']}>
                 <img ref={imageRef} src="https://w.wallhaven.cc/full/85/wallhaven-858lz1.png" alt="" />
                 {
-                    isHover && <div ref={magnifierRef} className={styles['magnifier']} style={moveStyle}></div> 
+                    // isHover && <div ref={magnifierRef} className={styles['magnifier']} style={moveStyle}></div> 
+                    isHover && <canvas ref={magnifierRef} className={styles['magnifier']} style={moveStyle} width={200} height={200} ></canvas>
                 }
             </div>
         </>
