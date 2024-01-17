@@ -1,16 +1,14 @@
 /*
  * @Author: xiaohu
  * @Date: 2023-01-15 19:16:30
- * @LastEditors: xiaohu
- * @LastEditTime: 2023-03-03 10:11:04
+ * @LastEditors: yeyu98
+ * @LastEditTime: 2024-01-17 22:33:18
  * @FilePath: \react-demo-ts\src\components\WebSocketDemo\WebSocketDemo.tsx
  * @Description: 
  */
 import React, { useEffect, useState } from 'react'
-import { ITitleInfo } from '../../pages/DemoPage'
-
 interface Props {
-  title: ITitleInfo
+  title: any
 }
 interface IUserChidlrenInfo {
   name?: string,

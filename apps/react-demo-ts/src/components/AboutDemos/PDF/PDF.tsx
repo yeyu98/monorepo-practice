@@ -1,8 +1,8 @@
 /*
  * @Author: lzy-Jerry
  * @Date: 2023-09-26 21:35:35
- * @LastEditors: lzy-Jerry
- * @LastEditTime: 2023-09-26 22:52:47
+ * @LastEditors: yeyu98
+ * @LastEditTime: 2024-01-17 22:30:26
  * @Description: 
  */
 import React, {useState} from 'react'
@@ -16,7 +16,7 @@ function PDF(props: Props) {
     const {} = props
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [domPhoto, setDomPhoto] = useState<string>('');
-    const [canvasDom, setCanvasDom] = useState<HTMLCanvasElement>('');
+    const [canvasDom, setCanvasDom] = useState<HTMLCanvasElement | null>(null);
 
     const showModal = () => {
       setIsModalOpen(true);
