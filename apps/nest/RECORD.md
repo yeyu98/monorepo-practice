@@ -2,7 +2,7 @@
  * @Author: yeyu98
  * @Date: 2024-01-23 22:51:59
  * @LastEditors: yeyu98
- * @LastEditTime: 2024-01-24 20:40:47
+ * @LastEditTime: 2024-01-24 21:01:07
  * @Description: 
 -->
 # problems
@@ -64,3 +64,7 @@ Controller：控制器一般用于设置路由，响应服务
 
 ### 全局路由前缀
 可以在main.ts文件中通过app.setGlobalPrefix('api')添加；
+
+### nest cli命令
+nest g [文件类型] [文件名]
+创建顺序Module --> Controller --> Service

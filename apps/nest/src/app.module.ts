@@ -2,7 +2,7 @@
  * @Author: yeyu98
  * @Date: 2024-01-03 22:08:39
  * @LastEditors: yeyu98
- * @LastEditTime: 2024-01-24 20:55:10
+ * @LastEditTime: 2024-01-24 21:02:45
  * @Description:
  */
 import { Module } from '@nestjs/common';
