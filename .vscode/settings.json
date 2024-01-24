@@ -3,5 +3,6 @@
         "antd",
         "tailwindcss",
         "yeyu"
-    ]
+    ],
+    "files.eol": "\n"
 }
