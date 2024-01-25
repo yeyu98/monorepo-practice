@@ -1,7 +1,7 @@
 import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
 // 定义文章用于创建表
 // @Entity：标识当前类是一个实体；
-// @Column
+// @Column：定义列的数据类型；
 // @PrimaryGeneratedColumn 设置某一列为主键并自动生成，有几种生成id的方式increment（自增）、uuid（随机生成唯一标识）、rowid、identity；
 
 @Entity('posts')

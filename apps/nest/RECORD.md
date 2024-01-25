@@ -68,3 +68,9 @@ Controller：控制器一般用于设置路由，响应服务
 ### nest cli命令
 nest g [文件类型] [文件名]
 创建顺序Module --> Controller --> Service
+
+### 数据库操作
+#### 建表相关装饰器
+@Entity：标识当前类是一个实体；
+@Column：定义列的数据类型；
+@PrimaryGeneratedColumn 设置某一列为主键并自动生成，有几种生成id的方式increment（自增）、uuid（随机生成唯一标识）、rowid、identity；
