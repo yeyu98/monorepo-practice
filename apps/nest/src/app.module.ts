@@ -2,7 +2,7 @@
  * @Author: yeyu98
  * @Date: 2024-01-03 22:08:39
  * @LastEditors: yeyu98
- * @LastEditTime: 2024-01-25 22:04:02
+ * @LastEditTime: 2024-01-25 22:10:46
  * @Description:
  */
 import { Module } from '@nestjs/common';
@@ -27,7 +27,8 @@ import { PostsEntity } from './posts/posts.entity';
       inject: [ConfigService],
       useFactory: async (configService: ConfigService) => ({
         type: 'mysql', // 数据库类型
-        entities: [PostsEntity], // 数据表实体
+        // entities: [PostsEntity], // 数据表实体
+        autoLoadEntities: true, // 创建数据表实体之后自动导入
         host: configService.get('DB_HOST', 'localhost'), // 主机，默认为localhost
         port: configService.get<number>('DB_PORT', 3307), // 端口号
         username: configService.get('DB_USER', 'root'), // 用户名
