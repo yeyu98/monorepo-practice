@@ -1,8 +1,8 @@
 /*
  * @Author: yeyu98
  * @Date: 2024-01-24 20:51:02
- * @LastEditors: xiaohu
- * @LastEditTime: 2024-01-25 17:56:44
+ * @LastEditors: yeyu98
+ * @LastEditTime: 2024-01-25 21:54:43
  * @Description:
  */
 import { HttpException, Injectable } from '@nestjs/common';
@@ -12,6 +12,10 @@ import { Repository } from 'typeorm';
 export interface PostsRo {
   list: PostsEntity[];
   count: number;
+}
+export interface PostQuery {
+  pageSize: number;
+  pageNum: number;
 }
 // HttpException抛出异常和Error有什么区别
 // PostsRo的作用是什么？
@@ -46,7 +50,7 @@ export class PostsService {
   }
   // 更新文章
   async updatePostById(id: number, post: PostsEntity) {
-    const existPost = await this.postsRepository.findOneBy({ id: post.id });
+    const existPost = await this.postsRepository.findOneBy({ id });
     if (!existPost) {
       throw new HttpException('文章不存在', 401);
     }
@@ -58,7 +62,7 @@ export class PostsService {
     return await this.postsRepository.findOneBy({ id });
   }
   // 查询文章列表（分页） pageSize pageNum
-  async findAllPost(query): Promise<PostsRo> {
+  async findAllPosts(query: PostQuery): Promise<PostsRo> {
     const qb = await this.postsRepository.createQueryBuilder('post');
     qb.where('1 = 1');
     qb.orderBy('post.create_time', 'DESC');

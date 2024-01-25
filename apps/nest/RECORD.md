@@ -2,7 +2,7 @@
  * @Author: yeyu98
  * @Date: 2024-01-23 22:51:59
  * @LastEditors: yeyu98
- * @LastEditTime: 2024-01-24 21:01:07
+ * @LastEditTime: 2024-01-25 22:00:29
  * @Description: 
 -->
 # problems
@@ -74,3 +74,39 @@ nest g [文件类型] [文件名]
 @Entity：标识当前类是一个实体；
 @Column：定义列的数据类型；
 @PrimaryGeneratedColumn 设置某一列为主键并自动生成，有几种生成id的方式increment（自增）、uuid（随机生成唯一标识）、rowid、identity；
+
+实体定义完使用的时候需要在当前module中引入：
+```
+@Module({
+  imports: [TypeOrmModule.forFeature([PostsEntity])],
+  controllers: [PostsController],
+  providers: [PostsService],
+})
+```
+在appModule中也需要引入一下实体：
+```
+imports: [
+  // 数据库连接配置这里目前不太理解为什么这么做
+  ConfigModule.forRoot({
+    isGlobal: true,
+    envFilePath: [envConfig.path],
+  }),
+  TypeOrmModule.forRootAsync({
+    imports: [ConfigModule],
+    inject: [ConfigService],
+    useFactory: async (configService: ConfigService) => ({
+      type: 'mysql', // 数据库类型
+      entities: [PostsEntity], // 数据表实体
+      host: configService.get('DB_HOST', 'localhost'), // 主机，默认为localhost
+      port: configService.get<number>('DB_PORT', 3307), // 端口号
+      username: configService.get('DB_USER', 'root'), // 用户名
+      password: configService.get('DB_PASSWORD', '123456'), // 密码
+      database: configService.get('DB_DATABASE', 'blog'), //数据库名
+      timezone: '+08:00', //服务器上配置的时区
+      synchronize: true, //根据实体自动创建数据库表， 生产环境建议关闭
+    }),
+  }),
+]
+```
+
+![Alt text](image.png)

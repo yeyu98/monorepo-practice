@@ -1,8 +1,8 @@
 /*
  * @Author: yeyu98
  * @Date: 2024-01-03 22:08:39
- * @LastEditors: xiaohu
- * @LastEditTime: 2024-01-25 11:18:05
+ * @LastEditors: yeyu98
+ * @LastEditTime: 2024-01-25 21:57:59
  * @Description:
  */
 import { Module } from '@nestjs/common';
@@ -12,6 +12,7 @@ import { PostsModule } from './posts/posts.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { ConfigService, ConfigModule } from '@nestjs/config';
 import envConfig from 'config/env';
+import { PostsEntity } from './posts/posts.entity';
 
 // 应用程序的根模块，根模块提供了用来启动应用的引导机制，可以包含很多功能模块。
 @Module({
@@ -26,7 +27,7 @@ import envConfig from 'config/env';
       inject: [ConfigService],
       useFactory: async (configService: ConfigService) => ({
         type: 'mysql', // 数据库类型
-        entities: [], // 数据表实体
+        entities: [PostsEntity], // 数据表实体
         host: configService.get('DB_HOST', 'localhost'), // 主机，默认为localhost
         port: configService.get<number>('DB_PORT', 3307), // 端口号
         username: configService.get('DB_USER', 'root'), // 用户名
