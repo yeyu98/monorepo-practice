@@ -2,7 +2,7 @@
  * @Author: yeyu98
  * @Date: 2024-01-03 22:08:39
  * @LastEditors: yeyu98
- * @LastEditTime: 2024-01-25 21:57:59
+ * @LastEditTime: 2024-01-25 22:04:02
  * @Description:
  */
 import { Module } from '@nestjs/common';
@@ -34,7 +34,7 @@ import { PostsEntity } from './posts/posts.entity';
         password: configService.get('DB_PASSWORD', '123456'), // 密码
         database: configService.get('DB_DATABASE', 'blog'), //数据库名
         timezone: '+08:00', //服务器上配置的时区
-        synchronize: true, //根据实体自动创建数据库表， 生产环境建议关闭
+        synchronize: false, //根据实体自动创建数据库表， 生产环境建议关闭
       }),
     }),
     PostsModule,

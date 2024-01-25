@@ -2,7 +2,7 @@
  * @Author: yeyu98
  * @Date: 2024-01-23 22:51:59
  * @LastEditors: yeyu98
- * @LastEditTime: 2024-01-25 22:00:29
+ * @LastEditTime: 2024-01-25 22:09:35
  * @Description: 
 -->
 # problems
@@ -75,6 +75,8 @@ nest g [文件类型] [文件名]
 @Column：定义列的数据类型；
 @PrimaryGeneratedColumn 设置某一列为主键并自动生成，有几种生成id的方式increment（自增）、uuid（随机生成唯一标识）、rowid、identity；
 
+
+##### Entity
 实体定义完使用的时候需要在当前module中引入：
 ```
 @Module({
@@ -83,7 +85,8 @@ nest g [文件类型] [文件名]
   providers: [PostsService],
 })
 ```
-在appModule中也需要引入一下实体：
+在appModule中也需要引入一下实体否则会报以下错误：
+![Alt text](image.png)
 ```
 imports: [
   // 数据库连接配置这里目前不太理解为什么这么做
@@ -97,16 +100,33 @@ imports: [
     useFactory: async (configService: ConfigService) => ({
       type: 'mysql', // 数据库类型
       entities: [PostsEntity], // 数据表实体
-      host: configService.get('DB_HOST', 'localhost'), // 主机，默认为localhost
-      port: configService.get<number>('DB_PORT', 3307), // 端口号
-      username: configService.get('DB_USER', 'root'), // 用户名
-      password: configService.get('DB_PASSWORD', '123456'), // 密码
-      database: configService.get('DB_DATABASE', 'blog'), //数据库名
-      timezone: '+08:00', //服务器上配置的时区
-      synchronize: true, //根据实体自动创建数据库表， 生产环境建议关闭
+      ...
     }),
   }),
 ]
 ```
 
-![Alt text](image.png)
+
+实体设置的三种方式（在创建完实体之后就需要在数据库里设置一下）
+- 单独定义：就是每次手动的往 entities: [PostsEntity] 这个数据里添加；
+  ```
+  TypeOrmModule.forRoot({
+    //...
+    entities: [PostsEntity, UserEntity],
+  }),
+  ```
+- 自动引入：就是每次创建了实体之后就会自动往entities数组中添加
+  ```
+  TypeOrmModule.forRoot({
+    //...
+    autoLoadEntities: true,
+  }),
+  ```
+- 配置路径自动引入：就是根据路径自动匹配加载对应的实体
+  
+  ```
+   TypeOrmModule.forRoot({
+    //...
+    entities: ['dist/**/*.entity{.ts,.js}'],
+  }),
+  ```
