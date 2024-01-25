@@ -2,7 +2,7 @@
  * @Author: yeyu98
  * @Date: 2024-01-24 20:51:02
  * @LastEditors: yeyu98
- * @LastEditTime: 2024-01-25 21:54:43
+ * @LastEditTime: 2024-01-25 22:50:13
  * @Description:
  */
 import { HttpException, Injectable } from '@nestjs/common';
@@ -12,6 +12,7 @@ import { Repository } from 'typeorm';
 export interface PostsRo {
   list: PostsEntity[];
   count: number;
+  currentPage: number;
 }
 export interface PostQuery {
   pageSize: number;
@@ -31,10 +32,11 @@ export class PostsService {
   // 创建文章 并返回创建的数据
   async createPost(post: Partial<PostsEntity>): Promise<PostsEntity> {
     const { title } = post;
+
     if (!title) {
       throw new HttpException('缺少文章标题', 401);
     }
-    const doc = this.postsRepository.findOneBy({ title });
+    const doc = await this.postsRepository.findOneBy({ title });
     if (doc) {
       throw new HttpException('文章已存在', 401);
     }
@@ -71,6 +73,6 @@ export class PostsService {
     qb.limit(pageSize);
     qb.offset(pageSize * (pageNum - 1));
     const list = await qb.getMany();
-    return { list, count };
+    return { list, count, currentPage: pageNum };
   }
 }

@@ -2,7 +2,7 @@
  * @Author: yeyu98
  * @Date: 2024-01-24 20:48:14
  * @LastEditors: yeyu98
- * @LastEditTime: 2024-01-25 21:54:52
+ * @LastEditTime: 2024-01-25 22:47:14
  * @Description:
  */
 import {
@@ -32,7 +32,7 @@ export class PostsController {
   }
   // 更新文章
   @Put(':id')
-  async update(id: number, post: PostsEntity) {
+  async update(id: number, @Body() post: PostsEntity) {
     return await this.postService.updatePostById(id, post);
   }
   // 查询一篇文章

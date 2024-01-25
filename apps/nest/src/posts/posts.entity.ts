@@ -1,3 +1,10 @@
+/*
+ * @Author: yeyu98
+ * @Date: 2024-01-25 21:22:36
+ * @LastEditors: yeyu98
+ * @LastEditTime: 2024-01-25 22:39:56
+ * @Description:
+ */
 import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
 // 定义文章用于创建表
 // @Entity：标识当前类是一个实体；
@@ -21,7 +28,7 @@ export class PostsEntity {
   @Column({ default: '' })
   thumb_url: string;
 
-  @Column('tinyint') // 数字 0 ~ 255
+  @Column({ type: 'tinyint', default: 0 }) // 数字 0 ~ 255
   type: number;
 
   @Column({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })
