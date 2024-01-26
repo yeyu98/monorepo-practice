@@ -2,7 +2,7 @@
  * @Author: yeyu98
  * @Date: 2024-01-24 20:51:02
  * @LastEditors: yeyu98
- * @LastEditTime: 2024-01-26 19:57:47
+ * @LastEditTime: 2024-01-26 20:51:40
  * @Description:
  */
 import { HttpException, Injectable } from '@nestjs/common';

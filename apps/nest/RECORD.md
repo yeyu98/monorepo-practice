@@ -2,7 +2,7 @@
  * @Author: yeyu98
  * @Date: 2024-01-23 22:51:59
  * @LastEditors: yeyu98
- * @LastEditTime: 2024-01-26 20:03:27
+ * @LastEditTime: 2024-01-26 20:37:44
  * @Description: 
 -->
 # problems
@@ -156,3 +156,10 @@ typeorm 提供了两种查询方式
   qb.limit(pageSize);
   qb.offset(pageSize * (pageNum - 1));
   ```
+
+
+### Exception filters 异常过滤器
+- 除了定义异常过滤器，我们也可以通过 `throw new HttpException('文章不存在', 401)`来单个定义异常此时nest会帮我们美化返回给客户端的异常信息，但不太符合实际的数据结构规范；
+- 因此当应用中出现异常时，我们可以通过在全局`自定义过滤器`来控制响应返回给客户端的异常信息或数据结构；
+
+### 拦截器
