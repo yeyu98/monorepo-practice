@@ -2,13 +2,18 @@
  * @Author: yeyu98
  * @Date: 2024-01-23 22:51:59
  * @LastEditors: yeyu98
- * @LastEditTime: 2024-01-25 22:09:35
+ * @LastEditTime: 2024-01-26 20:02:03
  * @Description: 
 -->
 # problems
 nest里模块指的是什么呢？
 params /:id 要怎么获取到路径上的id呢？
 query ?id=1 又要怎么设置且怎么获取呢？
+
+HttpException 继承自 Error 在nest里属于最基本的异常
+PostsRo的作用是什么？用于定义接口的返回值类型
+InjectRepository是个参数装饰器，具体的作用是什么
+
 
 # points
 
@@ -129,4 +134,24 @@ imports: [
     //...
     entities: ['dist/**/*.entity{.ts,.js}'],
   }),
+  ```
+
+##### @Column
+定义列的数据类型；
+##### @PrimaryGeneratedColumn 
+用于设置某一列为主键并自动生成，有几种生成id的方式increment（自增）、uuid（随机生成唯一标识）、rowid、identity；
+
+
+
+### 查询
+typeorm 提供了两种查询方式 
+- 通过api查询比如findById、findOne之类的；
+- 通过createQueryBuilder创建查询，用这种方式查询的好处在于灵活可以随意拼接查询条件；
+  ```
+  qb.where('1 = 1');
+  qb.orderBy('post.create_time', 'DESC');
+  const count = await qb.getCount();
+  const { pageSize = 10, pageNum = 1 } = query;
+  qb.limit(pageSize);
+  qb.offset(pageSize * (pageNum - 1));
   ```

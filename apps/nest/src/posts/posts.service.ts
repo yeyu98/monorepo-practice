@@ -2,7 +2,7 @@
  * @Author: yeyu98
  * @Date: 2024-01-24 20:51:02
  * @LastEditors: yeyu98
- * @LastEditTime: 2024-01-25 22:50:13
+ * @LastEditTime: 2024-01-26 19:57:47
  * @Description:
  */
 import { HttpException, Injectable } from '@nestjs/common';
@@ -18,10 +18,7 @@ export interface PostQuery {
   pageSize: number;
   pageNum: number;
 }
-// HttpException抛出异常和Error有什么区别
-// PostsRo的作用是什么？
-// InjectRepository是个参数装饰器，具体的作用是什么
-// typeorm 提供了两种查询方式 一种是通过api查询另外一个是通过createQueryBuilder创建查询
+
 @Injectable()
 export class PostsService {
   constructor(
