@@ -6,7 +6,7 @@
  * @Description:
  */
 import { HttpException, Injectable } from '@nestjs/common';
-import { PostsEntity } from './posts.entity';
+import { PostsEntity } from './entities/posts.entity';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 export interface PostsRo {

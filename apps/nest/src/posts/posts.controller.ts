@@ -2,7 +2,7 @@
  * @Author: yeyu98
  * @Date: 2024-01-24 20:48:14
  * @LastEditors: yeyu98
- * @LastEditTime: 2024-01-27 17:10:29
+ * @LastEditTime: 2024-01-27 22:07:30
  * @Description:
  */
 import {
@@ -17,7 +17,7 @@ import {
 } from '@nestjs/common';
 import { ApiTags, ApiOperation } from '@nestjs/swagger';
 import { PostsService, PostsRo, PostQuery } from './posts.service';
-import { PostsEntity } from './posts.entity';
+import { PostsEntity } from './entities/posts.entity';
 import { CreatePostsDto } from './dto/posts.dto';
 
 /* 

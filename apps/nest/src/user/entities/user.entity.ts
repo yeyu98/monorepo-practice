@@ -2,7 +2,7 @@
  * @Author: yeyu98
  * @Date: 2024-01-27 19:41:04
  * @LastEditors: yeyu98
- * @LastEditTime: 2024-01-27 21:11:06
+ * @LastEditTime: 2024-01-27 22:06:19
  * @Description:
  */
 import { BeforeInsert, Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
@@ -26,13 +26,13 @@ export class UserEntity {
   readonly role: string;
   @Column({
     name: 'create_time',
-    type: 'date',
+    type: 'timestamp',
     default: () => 'CURRENT_TIMESTAMP',
   })
   readonly createTime: Date;
   @Column({
     name: 'update_time',
-    type: 'date',
+    type: 'timestamp',
     default: () => 'CURRENT_TIMESTAMP',
   })
   readonly updateTime: Date;

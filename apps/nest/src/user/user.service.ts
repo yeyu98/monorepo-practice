@@ -2,20 +2,24 @@
  * @Author: yeyu98
  * @Date: 2024-01-27 19:40:45
  * @LastEditors: yeyu98
- * @LastEditTime: 2024-01-27 21:16:15
+ * @LastEditTime: 2024-01-27 21:34:48
  * @Description:
  */
 import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { UserEntity } from './entities/user.entity';
 import { CreateUserDto } from './dto/CreateUserDto';
+import { Repository } from 'typeorm';
 @Injectable()
 export class UserService {
-  constructor(@InjectRepository(UserEntity) private readonly userRepository) {}
+  constructor(
+    @InjectRepository(UserEntity)
+    private readonly userRepository: Repository<UserEntity>,
+  ) {}
   async register(createUser: CreateUserDto) {
     const { username } = createUser;
     // 查询库里有没有这个人
-    const exitUser = this.userRepository.findOneBy({
+    const exitUser = await this.userRepository.findOneBy({
       username,
     });
     if (exitUser) {
