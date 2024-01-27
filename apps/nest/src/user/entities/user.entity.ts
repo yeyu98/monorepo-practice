@@ -2,11 +2,11 @@
  * @Author: yeyu98
  * @Date: 2024-01-27 19:41:04
  * @LastEditors: yeyu98
- * @LastEditTime: 2024-01-27 22:06:19
+ * @LastEditTime: 2024-01-27 22:47:03
  * @Description:
  */
 import { BeforeInsert, Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
-import bcrypt from 'bcryptjs';
+import * as bcrypt from 'bcryptjs';
 
 @Entity('user')
 export class UserEntity {
@@ -39,6 +39,10 @@ export class UserEntity {
 
   @BeforeInsert()
   async encryptPassword() {
+    console.log(
+      '✨✨🥰  ~ UserEntity ~ encryptPassword ~ this.password--->>>',
+      this.password,
+    );
     this.password = await bcrypt.hashSync(this.password);
   }
 }
