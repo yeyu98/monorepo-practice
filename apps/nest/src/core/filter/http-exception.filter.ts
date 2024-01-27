@@ -2,7 +2,7 @@
  * @Author: yeyu98
  * @Date: 2024-01-26 20:39:42
  * @LastEditors: yeyu98
- * @LastEditTime: 2024-01-27 17:30:22
+ * @LastEditTime: 2024-01-27 19:11:46
  * @Description:
  */
 import { ArgumentsHost, ExceptionFilter, HttpException } from '@nestjs/common';
@@ -11,9 +11,13 @@ export class HttpExceptionFilter implements ExceptionFilter {
     const { getResponse } = host.switchToHttp(); // 获取上下文中的response对象
     const response = getResponse();
     const status = exception.getStatus(); // 获取上下文中的状态码
-
+    const exceptionResponse: any = exception.getResponse();
+    const validateMessage =
+      typeof exceptionResponse.message === 'string'
+        ? exceptionResponse.message
+        : exceptionResponse.message[0];
     const message = exception.message
-      ? exception.message
+      ? validateMessage || exception.message
       : `${status >= 500 ? 'Service Error' : 'Client Error'}`;
 
     const errorResponse = {
