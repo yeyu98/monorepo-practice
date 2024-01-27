@@ -31,7 +31,6 @@ export class HttpExceptionFilter implements ExceptionFilter {
       message,
       code: -1,
     };
-    console.log('✨✨🥰  ~ HttpExceptionFilter ~ errorResponse--->>> 过滤器');
 
     response.status(status);
     response.header('Content-Type', 'application/json; charset=utf-8');

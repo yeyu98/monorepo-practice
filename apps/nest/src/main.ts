@@ -2,7 +2,7 @@
  * @Author: yeyu98
  * @Date: 2024-01-03 22:08:39
  * @LastEditors: yeyu98
- * @LastEditTime: 2024-01-27 18:59:54
+ * @LastEditTime: 2024-01-27 22:16:09
  * @Description:
  */
 import { NestFactory } from '@nestjs/core';
@@ -38,6 +38,8 @@ async function bootstrap() {
   SwaggerModule.setup('docs', app, document);
 
   await app.listen(PORT);
-  console.log(`服务启动咯~ 服务地址是：http://localhost:${PORT}`);
+  console.log(
+    `服务启动咯~ 服务地址是：http://localhost:${PORT}\n接口文档地址是：http://localhost:${PORT}/docs`,
+  );
 }
 bootstrap();
