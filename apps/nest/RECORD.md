@@ -2,7 +2,7 @@
  * @Author: yeyu98
  * @Date: 2024-01-23 22:51:59
  * @LastEditors: yeyu98
- * @LastEditTime: 2024-01-27 17:17:32
+ * @LastEditTime: 2024-01-27 17:36:05
  * @Description: 
 -->
 # problems
@@ -191,8 +191,16 @@ SwaggerModule.setup('docs', app, document);
 ### 接口说明（给接口添加一些描述）
 使用@ApiOperation('xxx') 根据不同的controller给每个接口添加一些描述；
 ### 接口传参
+#### DTO
 -DTO：数据传输对象，可以简单理解为入参，一般会包含表entity的部分数据或全部数据；
 - DTO 一般会使用类来定义，主要有两个原因： 
   1.我们需要通过装饰器给swagger里的字段添加说明如果使用interface就无法实现；
   2.DTO并不包含 entity 的所有字段；
 - DTO定义swagger的入参描述需要通过 ApiProperty, ApiPropertyOptional（可选）
+
+#### 数据验证（一般在DTO层做数据校验）
+管道：具有 @Injectable() 装饰器的类。管道应实现 PipeTransform 接口。
+有两个类型
+- 转换：将输入的数据转换为需要的数据输出（那么我是不是需要在管道里面写不同的处理逻辑啊？？）；
+- 验证：对输入的数据进行数据验证，不通过校验就通过异常抛出，是controller的前置操作如果不通过验证也就不会进入到controller层；
+Nest.js自带了三个开箱即用的管道（就不用自己写啦~~）：ValidationPipe、ParseIntPipe和ParseUUIDPipe, 其中ValidationPipe 配合class-validator就可以完美的实现我们想要的效果（对参数类型进行验证，验证失败抛出异常）；
