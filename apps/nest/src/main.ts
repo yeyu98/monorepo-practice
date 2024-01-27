@@ -2,10 +2,11 @@
  * @Author: yeyu98
  * @Date: 2024-01-03 22:08:39
  * @LastEditors: yeyu98
- * @LastEditTime: 2024-01-26 21:06:38
+ * @LastEditTime: 2024-01-27 16:55:51
  * @Description:
  */
 import { NestFactory } from '@nestjs/core';
+import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
 import { AppModule } from './app.module';
 import { HttpExceptionFilter } from './core/filter/http-exception.filter';
 import { TransformInterceptor } from './core/interceptor/transform';
@@ -20,6 +21,19 @@ async function bootstrap() {
   app.useGlobalFilters(new HttpExceptionFilter());
   // 加载拦截器
   app.useGlobalInterceptors(new TransformInterceptor());
+
+  // swagger文档配置
+  const config = new DocumentBuilder()
+    .setTitle('文章平台')
+    .setDescription('文章平台接口文档')
+    .setVersion('1.0')
+    .addBearerAuth()
+    .build();
+
+  const document = SwaggerModule.createDocument(app, config);
+
+  SwaggerModule.setup('docs', app, document);
+
   await app.listen(PORT);
   console.log(`服务启动咯~ 服务地址是：http://localhost:${PORT}`);
 }

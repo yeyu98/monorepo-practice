@@ -2,7 +2,7 @@
  * @Author: yeyu98
  * @Date: 2024-01-25 21:22:36
  * @LastEditors: yeyu98
- * @LastEditTime: 2024-01-25 22:39:56
+ * @LastEditTime: 2024-01-27 17:15:01
  * @Description:
  */
 import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
@@ -28,7 +28,7 @@ export class PostsEntity {
   @Column({ default: '' })
   thumb_url: string;
 
-  @Column({ type: 'tinyint', default: 0 }) // 数字 0 ~ 255
+  @Column({ type: 'tinyint' }) // 数字 0 ~ 255
   type: number;
 
   @Column({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })

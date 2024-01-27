@@ -2,7 +2,7 @@
  * @Author: yeyu98
  * @Date: 2024-01-23 22:51:59
  * @LastEditors: yeyu98
- * @LastEditTime: 2024-01-26 20:59:20
+ * @LastEditTime: 2024-01-27 17:17:32
  * @Description: 
 -->
 # problems
@@ -161,7 +161,38 @@ typeorm 提供了两种查询方式
 ### Exception filters 异常过滤器
 - 除了定义异常过滤器，我们也可以通过 `throw new HttpException('文章不存在', 401)`来单个定义异常此时nest会帮我们美化返回给客户端的异常信息，但不太符合实际的数据结构规范；
 - 因此当应用中出现异常时，我们可以通过在全局`自定义过滤器`来控制响应返回给客户端的异常信息或数据结构；
+- 在过滤器中需要实现catch()方法；
 
 ## 拦截器
 - 和过滤器有点类似，过滤器可以通过@Injectable()单独注入到某个Controller中；
-- 在拦截器中需要实现intercept()；
+- 在拦截器中需要实现intercept()方法；
+
+
+
+## 接口
+### 配置接口文档 swagger
+在main.ts文件中引入如下代码
+```
+import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
+const config = new DocumentBuilder()
+  .setTitle('文章平台')
+  .setDescription('文章平台接口文档')
+  .setVersion('1.0')
+  .addBearerAuth()
+  .build();
+
+const document = SwaggerModule.createDocument(app, config);
+
+SwaggerModule.setup('docs', app, document);
+```
+之后通过你的地址+docs就可以访问了
+### 接口标签（给接口分类）
+使用@ApiTag('xxx') 根据不同的controller来做接口分类；
+### 接口说明（给接口添加一些描述）
+使用@ApiOperation('xxx') 根据不同的controller给每个接口添加一些描述；
+### 接口传参
+-DTO：数据传输对象，可以简单理解为入参，一般会包含表entity的部分数据或全部数据；
+- DTO 一般会使用类来定义，主要有两个原因： 
+  1.我们需要通过装饰器给swagger里的字段添加说明如果使用interface就无法实现；
+  2.DTO并不包含 entity 的所有字段；
+- DTO定义swagger的入参描述需要通过 ApiProperty, ApiPropertyOptional（可选）
