@@ -2,7 +2,7 @@
  * @Author: yeyu98
  * @Date: 2024-01-27 19:40:37
  * @LastEditors: yeyu98
- * @LastEditTime: 2024-01-27 21:22:42
+ * @LastEditTime: 2024-01-27 22:09:15
  * @Description:
  */
 import { Controller, Post, Body } from '@nestjs/common';
@@ -15,7 +15,7 @@ import { ApiTags } from '@nestjs/swagger';
 export class UserController {
   constructor(private readonly userService: UserService) {}
   @Post('register')
-  register(@Body() createUser: CreateUserDto) {
-    this.userService.register(createUser);
+  async register(@Body() createUser: CreateUserDto) {
+    return await this.userService.register(createUser);
   }
 }
