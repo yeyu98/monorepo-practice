@@ -11,6 +11,7 @@ import { AppService } from './app.service';
 import { PostsModule } from './posts/posts.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { ConfigService, ConfigModule } from '@nestjs/config';
+import { UserModule } from './user/user.module';
 import envConfig from 'config/env';
 
 // 应用程序的根模块，根模块提供了用来启动应用的引导机制，可以包含很多功能模块。
@@ -38,6 +39,7 @@ import envConfig from 'config/env';
       }),
     }),
     PostsModule,
+    UserModule,
   ],
   controllers: [AppController],
   providers: [AppService],
