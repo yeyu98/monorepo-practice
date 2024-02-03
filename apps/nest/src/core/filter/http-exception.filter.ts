@@ -1,11 +1,17 @@
 /*
  * @Author: yeyu98
  * @Date: 2024-01-26 20:39:42
- * @LastEditors: yeyu98
- * @LastEditTime: 2024-01-27 22:14:26
+ * @LastEditors: xiaohu
+ * @LastEditTime: 2024-02-03 14:33:42
  * @Description:
  */
-import { ArgumentsHost, ExceptionFilter, HttpException } from '@nestjs/common';
+import {
+  ArgumentsHost,
+  ExceptionFilter,
+  HttpException,
+  Catch,
+} from '@nestjs/common';
+@Catch(HttpException)
 export class HttpExceptionFilter implements ExceptionFilter {
   catch(exception: HttpException, host: ArgumentsHost) {
     const { getResponse } = host.switchToHttp(); // 获取上下文中的response对象

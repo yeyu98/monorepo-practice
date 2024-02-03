@@ -1,8 +1,8 @@
 <!--
  * @Author: yeyu98
  * @Date: 2024-01-23 22:51:59
- * @LastEditors: yeyu98
- * @LastEditTime: 2024-01-27 17:36:05
+ * @LastEditors: xiaohu
+ * @LastEditTime: 2024-02-03 14:08:05
  * @Description: 
 -->
 # problems
@@ -14,6 +14,10 @@ HttpException 继承自 Error 在nest里属于最基本的异常
 PostsRo的作用是什么？用于定义接口的返回值类型
 @InjectRepository是个参数装饰器，具体的作用是什么？
 结合forFeature()定义的实体对应的仓库，我们可以通过@InjectRepository将实体注入到服务中去；
+
+
+HTTP请求抛出的异常可以使用自定义的去写，那么数据库相关的操作抛出的异常要怎么去接呢？
+使用 QueryFailedError 再实现一个过滤器；
 
 
 # points

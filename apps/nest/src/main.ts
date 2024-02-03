@@ -1,14 +1,15 @@
 /*
  * @Author: yeyu98
  * @Date: 2024-01-03 22:08:39
- * @LastEditors: yeyu98
- * @LastEditTime: 2024-01-27 22:16:09
+ * @LastEditors: xiaohu
+ * @LastEditTime: 2024-02-03 14:32:45
  * @Description:
  */
 import { NestFactory } from '@nestjs/core';
 import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
 import { AppModule } from './app.module';
 import { HttpExceptionFilter } from './core/filter/http-exception.filter';
+import { QueryExceptionFilter } from './core/filter/query-exception.filter';
 import { TransformInterceptor } from './core/interceptor/transform';
 import { ValidationPipe } from '@nestjs/common';
 
@@ -19,7 +20,7 @@ async function bootstrap() {
   // 设置url前缀
   app.setGlobalPrefix('api');
   // 加载过滤器
-  app.useGlobalFilters(new HttpExceptionFilter());
+  app.useGlobalFilters(new HttpExceptionFilter(), new QueryExceptionFilter());
   // 加载拦截器
   app.useGlobalInterceptors(new TransformInterceptor());
   // 加载管道
