@@ -2,28 +2,33 @@
  * @Author: yeyu98
  * @Date: 2024-01-23 22:51:59
  * @LastEditors: xiaohu
- * @LastEditTime: 2024-02-03 14:47:12
+ * @LastEditTime: 2024-02-03 15:24:24
  * @Description: 
 -->
 # problems
-nest里模块指的是什么呢？
-params /:id 要怎么获取到路径上的id呢？
-query ?id=1 又要怎么设置且怎么获取呢？
+- nest里模块指的是什么呢？
+- params /:id 要怎么获取到路径上的id呢？
+- query ?id=1 又要怎么设置且怎么获取呢？
 
 HttpException 继承自 Error 在nest里属于最基本的异常
-PostsRo的作用是什么？用于定义接口的返回值类型
-@InjectRepository是个参数装饰器，具体的作用是什么？
+- PostsRo的作用是什么？
+用于定义接口的返回值类型
+- @InjectRepository是个参数装饰器，具体的作用是什么？
 结合forFeature()定义的实体对应的仓库，我们可以通过@InjectRepository将实体注入到服务中去；
 
 
-HTTP请求抛出的异常可以使用自定义的去写，那么数据库相关的操作抛出的异常要怎么去接呢？
+- HTTP请求抛出的异常可以使用自定义的去写，那么数据库相关的操作抛出的异常要怎么去接呢？
 使用 QueryFailedError 再实现一个过滤器；
 
 
-BeforeInsert直接使用传入的DTO save不生效？
+- BeforeInsert直接使用传入的DTO save不生效？
 使用了BeforeInsert需要先实例化一下DTO才可以生效，也就是说需要一个新的对象才能生效；
-password 一直为空？
+- 为什么password 一直为空？
 是因为在定义实体的时候需要给每个Column指定类型或字符长度或默认值之类的否则自动创建表的时候无法创建；
+
+- passport针对登录做了哪些事情？为什么需要它？
+
+
 
 # points
 
@@ -176,7 +181,7 @@ typeorm 提供了两种查询方式
 ## 拦截器
 - 和过滤器有点类似，过滤器可以通过@Injectable()单独注入到某个Controller中；
 - 在拦截器中需要实现intercept()方法；
-
+- 返回的数据隐藏（以password为例），使用class-transformer提供的Exclude来序列化，对返回的数据实现过滤掉password。接着在对应请求的地方标记使用ClassSerializerInterceptor
 
 
 ## 接口
@@ -214,3 +219,11 @@ SwaggerModule.setup('docs', app, document);
 - 转换：将输入的数据转换为需要的数据输出（那么我是不是需要在管道里面写不同的处理逻辑啊？？）；
 - 验证：对输入的数据进行数据验证，不通过校验就通过异常抛出，是controller的前置操作如果不通过验证也就不会进入到controller层；
 Nest.js自带了三个开箱即用的管道（就不用自己写啦~~）：ValidationPipe、ParseIntPipe和ParseUUIDPipe, 其中ValidationPipe 配合class-validator就可以完美的实现我们想要的效果（对参数类型进行验证，验证失败抛出异常）；
+
+
+## 登录
+passport.js
+### 本地用户登录 （用户名&密码）
+#### 创建Auth模块 & 生成passport策略
+
+### 微信扫码登录

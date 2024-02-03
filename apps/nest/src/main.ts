@@ -2,7 +2,7 @@
  * @Author: yeyu98
  * @Date: 2024-01-03 22:08:39
  * @LastEditors: xiaohu
- * @LastEditTime: 2024-02-03 14:32:45
+ * @LastEditTime: 2024-02-03 15:02:35
  * @Description:
  */
 import { NestFactory } from '@nestjs/core';
@@ -40,7 +40,7 @@ async function bootstrap() {
 
   await app.listen(PORT);
   console.log(
-    `服务启动咯~ 服务地址是：http://localhost:${PORT}\n接口文档地址是：http://localhost:${PORT}/docs`,
+    `服务启动咯~\n服务地址是：http://localhost:${PORT}\n接口文档地址是：http://localhost:${PORT}/docs`,
   );
 }
 bootstrap();
