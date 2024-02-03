@@ -2,7 +2,7 @@
  * @Author: yeyu98
  * @Date: 2024-01-03 22:08:39
  * @LastEditors: xiaohu
- * @LastEditTime: 2024-02-03 14:08:34
+ * @LastEditTime: 2024-02-03 14:41:00
  * @Description:
  */
 import { Module } from '@nestjs/common';
@@ -13,6 +13,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { ConfigService, ConfigModule } from '@nestjs/config';
 import { UserModule } from './user/user.module';
 import envConfig from 'config/env';
+import { flattenDiagnosticMessageText } from 'typescript';
 
 // 应用程序的根模块，根模块提供了用来启动应用的引导机制，可以包含很多功能模块。
 @Module({
@@ -35,7 +36,7 @@ import envConfig from 'config/env';
         password: configService.get('DB_PASSWORD', '123456'), // 密码
         database: configService.get('DB_DATABASE', 'blog'), //数据库名
         timezone: '+08:00', //服务器上配置的时区
-        synchronize: false, //根据实体自动创建数据库表， 生产环境建议关闭
+        synchronize: true, //根据实体自动创建数据库表， 生产环境建议关闭
       }),
     }),
     PostsModule,

@@ -1,8 +1,8 @@
 /*
  * @Author: yeyu98
  * @Date: 2024-01-27 19:41:04
- * @LastEditors: yeyu98
- * @LastEditTime: 2024-01-27 22:47:03
+ * @LastEditors: xiaohu
+ * @LastEditTime: 2024-02-03 14:58:48
  * @Description:
  */
 import { BeforeInsert, Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
@@ -18,8 +18,11 @@ export class UserEntity {
   @Column({ length: 100, unique: true })
   readonly username: string;
 
+  @Column({ length: 100 })
   password: string;
+  @Column({ default: '' })
   readonly avatar: string;
+  @Column({ default: '' })
   readonly email: string;
   // 用户角色 root拥有全部权限 author拥有写文章的权限 visitor拥有阅读的权限
   @Column({ type: 'enum', enum: ['root', 'author', 'visitor'] })
@@ -39,6 +42,7 @@ export class UserEntity {
 
   @BeforeInsert()
   async encryptPassword() {
+    if (!this.password) return;
     console.log(
       '✨✨🥰  ~ UserEntity ~ encryptPassword ~ this.password--->>>',
       this.password,

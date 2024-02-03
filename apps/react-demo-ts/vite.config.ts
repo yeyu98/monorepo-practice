@@ -23,7 +23,7 @@ export default defineConfig({
     minify: false
   },
   server: {
-    open: true
+    open: false // 是否自动打开浏览器
   }
   // server: {
   //   port: 80,

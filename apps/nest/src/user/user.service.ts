@@ -2,7 +2,7 @@
  * @Author: yeyu98
  * @Date: 2024-01-27 19:40:45
  * @LastEditors: xiaohu
- * @LastEditTime: 2024-02-03 14:16:01
+ * @LastEditTime: 2024-02-03 14:50:21
  * @Description:
  */
 import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
@@ -25,15 +25,13 @@ export class UserService {
     if (exitUser) {
       throw new HttpException('用户已存在！', HttpStatus.BAD_REQUEST);
     }
-    // 没有就创建save
-    // TODO 教程里有先create一下user是为什么呢？因为使用了BeforeInsert需要先实例化一下DTO才可以生效
-    // create ===> new User(createUser)
-    const newUser = this.userRepository.create(createUser);
     console.log(
       '✨✨🥰  ~ UserService ~ register ~ createUser--->>>',
       createUser,
     );
+    const newUser = this.userRepository.create(createUser);
     console.log('✨✨🥰  ~ UserService ~ register ~ newUser--->>>', newUser);
-    return await this.userRepository.save(createUser);
+
+    return await this.userRepository.save(newUser);
   }
 }

@@ -2,7 +2,7 @@
  * @Author: yeyu98
  * @Date: 2024-01-23 22:51:59
  * @LastEditors: xiaohu
- * @LastEditTime: 2024-02-03 14:08:05
+ * @LastEditTime: 2024-02-03 14:47:12
  * @Description: 
 -->
 # problems
@@ -19,6 +19,11 @@ PostsRo的作用是什么？用于定义接口的返回值类型
 HTTP请求抛出的异常可以使用自定义的去写，那么数据库相关的操作抛出的异常要怎么去接呢？
 使用 QueryFailedError 再实现一个过滤器；
 
+
+BeforeInsert直接使用传入的DTO save不生效？
+使用了BeforeInsert需要先实例化一下DTO才可以生效，也就是说需要一个新的对象才能生效；
+password 一直为空？
+是因为在定义实体的时候需要给每个Column指定类型或字符长度或默认值之类的否则自动创建表的时候无法创建；
 
 # points
 
@@ -87,7 +92,8 @@ nest g [文件类型] [文件名]
 
 
 ##### Entity
-实体定义完使用的时候需要在当前module中引入：
+实体定义完使用的时候需要在当前module中引入&
+在定义实体的时候需要给每个Column指定类型或字符长度或默认值之类的否则自动创建表的时候无法创建；
 ```
 @Module({
   imports: [TypeOrmModule.forFeature([PostsEntity])],
