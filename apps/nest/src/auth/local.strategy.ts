@@ -2,7 +2,7 @@
  * @Author: xiaohu
  * @Date: 2024-02-03 15:35:05
  * @LastEditors: xiaohu
- * @LastEditTime: 2024-02-03 15:56:38
+ * @LastEditTime: 2024-02-05 10:22:20
  * @FilePath: \monorepo-practice\apps\nest\src\auth\local.strategy.ts
  * @Description:
  */

@@ -2,18 +2,19 @@
  * @Author: yeyu98
  * @Date: 2024-01-03 22:08:39
  * @LastEditors: xiaohu
- * @LastEditTime: 2024-02-03 14:41:00
+ * @LastEditTime: 2024-02-05 10:16:08
  * @Description:
  */
 import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
-import { PostsModule } from './posts/posts.module';
-import { TypeOrmModule } from '@nestjs/typeorm';
 import { ConfigService, ConfigModule } from '@nestjs/config';
-import { UserModule } from './user/user.module';
 import envConfig from 'config/env';
-import { flattenDiagnosticMessageText } from 'typescript';
+
+import { TypeOrmModule } from '@nestjs/typeorm';
+import { UserModule } from './user/user.module';
+import { AuthModule } from './auth/auth.module';
+import { PostsModule } from './posts/posts.module';
 
 // 应用程序的根模块，根模块提供了用来启动应用的引导机制，可以包含很多功能模块。
 @Module({
@@ -41,6 +42,7 @@ import { flattenDiagnosticMessageText } from 'typescript';
     }),
     PostsModule,
     UserModule,
+    AuthModule,
   ],
   controllers: [AppController],
   providers: [AppService],
