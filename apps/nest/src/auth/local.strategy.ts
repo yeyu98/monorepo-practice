@@ -2,7 +2,7 @@
  * @Author: xiaohu
  * @Date: 2024-02-03 15:35:05
  * @LastEditors: xiaohu
- * @LastEditTime: 2024-02-05 10:22:20
+ * @LastEditTime: 2024-02-05 14:23:39
  * @FilePath: \monorepo-practice\apps\nest\src\auth\local.strategy.ts
  * @Description:
  */
@@ -12,11 +12,15 @@ import { UserEntity } from 'src/user/entities/user.entity';
 import { Repository } from 'typeorm';
 import { BadRequestException } from '@nestjs/common';
 import { compareSync } from 'bcryptjs';
+import { InjectRepository } from '@nestjs/typeorm';
 
 const PassportStrategy = _PassportStrategy(Strategy);
 
 export class LocalStrategy extends PassportStrategy {
-  constructor(private readonly userRepository: Repository<UserEntity>) {
+  constructor(
+    @InjectRepository(UserEntity)
+    private readonly userRepository: Repository<UserEntity>,
+  ) {
     super({ usernameField: 'username', passwordField: 'password' });
   }
 
