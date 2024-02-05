@@ -16,6 +16,8 @@ import { InjectRepository } from '@nestjs/typeorm';
 
 const PassportStrategy = _PassportStrategy(Strategy);
 
+// 这里的策略会在哪个位置被调用呢？
+
 export class LocalStrategy extends PassportStrategy {
   constructor(
     @InjectRepository(UserEntity)

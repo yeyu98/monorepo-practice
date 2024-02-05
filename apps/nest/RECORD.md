@@ -225,5 +225,6 @@ Nest.js自带了三个开箱即用的管道（就不用自己写啦~~）：Valid
 passport.js
 ### 本地用户登录 （用户名&密码）
 #### 创建Auth模块 & 生成passport策略
+![Alt text](image-1.png)
 
 ### 微信扫码登录
