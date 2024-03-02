@@ -2,7 +2,7 @@
  * @Author: Jerry
  * @Date: 2023-03-03 10:32:42
  * @LastEditors: yeyu98
- * @LastEditTime: 2024-03-02 22:57:59
+ * @LastEditTime: 2024-03-02 22:59:40
  * @FilePath: \Explores\apps\react-demo-ts\src\router\index.tsx
  * @Description: 
  */
@@ -13,7 +13,7 @@ import DanceText from "@/pages/DanceText"
 import Series from "@/pages/Series"
 import NestTest from "@/pages/NestTest"
 import Magnifier from "@/pages/Magnifier/Magnifier"
-import ConvertVideo from "@/pages/ConvertVideo"
+import ConvertVideo from "@/pages/ConvertVideo/ConvertVideo"
 
 export default createBrowserRouter([
   {
