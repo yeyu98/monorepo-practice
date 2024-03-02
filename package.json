@@ -19,5 +19,8 @@
     "commitizen": {
       "path": "node_modules/cz-customizable"
     }
+  },
+  "engines": {
+    "node": "16.13.0"
   }
 }
