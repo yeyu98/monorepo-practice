@@ -1,8 +1,8 @@
 /*
  * @Author: yeyu98
  * @Date: 2024-01-26 20:39:42
- * @LastEditors: xiaohu
- * @LastEditTime: 2024-02-03 14:33:42
+ * @LastEditors: yeyu98
+ * @LastEditTime: 2024-03-02 22:45:49
  * @Description:
  */
 import {
@@ -16,7 +16,7 @@ export class HttpExceptionFilter implements ExceptionFilter {
   catch(exception: HttpException, host: ArgumentsHost) {
     const { getResponse } = host.switchToHttp(); // 获取上下文中的response对象
     const response = getResponse();
-    const status = exception.getStatus(); // 获取上下文中的状态码
+    const status = exception?.getStatus(); // 获取上下文中的状态码
     const exceptionResponse: any = exception.getResponse();
 
     let validateMessage = '';

@@ -1,8 +1,8 @@
 /*
  * @Author: yeyu98
  * @Date: 2024-01-27 19:41:04
- * @LastEditors: xiaohu
- * @LastEditTime: 2024-02-03 15:12:13
+ * @LastEditors: yeyu98
+ * @LastEditTime: 2024-03-02 22:46:11
  * @Description:
  */
 import { BeforeInsert, Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
