@@ -1,8 +1,8 @@
 /*
  * @Author: yeyu98
  * @Date: 2024-03-02 22:57:17
- * @LastEditors: yeyu98
- * @LastEditTime: 2024-03-02 23:18:34
+ * @LastEditors: xiaohu
+ * @LastEditTime: 2024-03-06 16:08:27
  * @Description: 
  */
 import React, { useEffect } from 'react'
@@ -36,6 +36,11 @@ function ConvertVideo(props: Props) {
     }
     useEffect(() => {
         convert()
+        const options = {
+            from: 'auto',
+            to: 'en'
+        }
+        const api = `https://translate.google.com/translate_a/single?client=gtx&dt=t&dt=bd&dj=1&source=input&q=${plainText}&sl=${from}&tl=${to}`
     }, [])
     return (
         <>

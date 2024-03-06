@@ -1,9 +1,9 @@
 <!--
  * @Author: xiaohu
  * @Date: 2023-06-21 11:24:03
- * @LastEditors: lzy-Jerry
- * @LastEditTime: 2023-07-31 23:41:45
- * @FilePath: \Explores\README.md
+ * @LastEditors: xiaohu
+ * @LastEditTime: 2024-03-06 10:11:29
+ * @FilePath: \monorepo-practice\README.md
  * @Description: 
 -->
 
@@ -42,3 +42,43 @@ canvas
     - 真实的canvas单个像素非常的小该如何和单个字符对应呢？
 - 图片取色器
 - 图片放大器
+
+
+
+
+
+/*
+title  input
+[
+  '未激活,1',
+  '已激活,2',
+  '已作废,3',
+]
+*/
+
+调用谷歌翻译自动生成
+
+复制
+
+const enum ActivityStatus {
+  INACTIVATED = 1,
+  ACTIVATED = 2,
+  ABOLISHED = 3
+}
+
+复制
+
+const activityStatusOptions = [
+  {
+    label: "未激活",
+    value: ActivityStatus.INACTIVATED
+  },
+  {
+    label: "已激活",
+    value: ActivityStatus.ACTIVATED
+  },
+  {
+    label: "已作废",
+    value: ActivityStatus.ABOLISHED
+  }
+];

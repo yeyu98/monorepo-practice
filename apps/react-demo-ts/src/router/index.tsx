@@ -14,6 +14,7 @@ import Series from "@/pages/Series"
 import NestTest from "@/pages/NestTest"
 import Magnifier from "@/pages/Magnifier/Magnifier"
 import ConvertVideo from "@/pages/ConvertVideo/ConvertVideo"
+import ConvertOptions from "@/pages/ConvertOptions/ConvertOptions"
 
 export default createBrowserRouter([
   {
@@ -43,5 +44,9 @@ export default createBrowserRouter([
   {
     path: '/convertVideo',
     element: <ConvertVideo />
+  },
+  {
+    path: '/convertOptions',
+    element: <ConvertOptions />
   }
 ])
