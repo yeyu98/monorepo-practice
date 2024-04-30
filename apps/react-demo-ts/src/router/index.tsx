@@ -15,6 +15,8 @@ import NestTest from "@/pages/NestTest"
 import Magnifier from "@/pages/Magnifier/Magnifier"
 import ConvertVideo from "@/pages/ConvertVideo/ConvertVideo"
 import ConvertOptions from "@/pages/ConvertOptions/ConvertOptions"
+import CanvasDemo from "@/pages/CanvasDemo"
+
 
 export default createBrowserRouter([
   {
@@ -48,5 +50,9 @@ export default createBrowserRouter([
   {
     path: '/convertOptions',
     element: <ConvertOptions />
+  },
+  {
+    path: '/canvasDemo',
+    element: <CanvasDemo />
   }
 ])
