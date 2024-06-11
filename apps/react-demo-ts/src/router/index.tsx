@@ -2,7 +2,7 @@
  * @Author: Jerry
  * @Date: 2023-03-03 10:32:42
  * @LastEditors: yeyu98
- * @LastEditTime: 2024-03-02 22:59:40
+ * @LastEditTime: 2024-06-01 11:24:42
  * @FilePath: \Explores\apps\react-demo-ts\src\router\index.tsx
  * @Description: 
  */
@@ -15,6 +15,7 @@ import NestTest from "@/pages/NestTest"
 import Magnifier from "@/pages/Magnifier/Magnifier"
 import ConvertVideo from "@/pages/ConvertVideo/ConvertVideo"
 import ConvertOptions from "@/pages/ConvertOptions/ConvertOptions"
+import Ocr from "@/pages/Ocr"
 
 export default createBrowserRouter([
   {
@@ -48,5 +49,9 @@ export default createBrowserRouter([
   {
     path: '/convertOptions',
     element: <ConvertOptions />
+  },
+  {
+    path: '/OCR',
+    element: <Ocr />
   }
 ])
