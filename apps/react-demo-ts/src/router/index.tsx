@@ -2,7 +2,7 @@
  * @Author: Jerry
  * @Date: 2023-03-03 10:32:42
  * @LastEditors: yeyu98
- * @LastEditTime: 2024-06-01 11:24:42
+ * @LastEditTime: 2024-06-11 21:45:12
  * @FilePath: \Explores\apps\react-demo-ts\src\router\index.tsx
  * @Description: 
  */
@@ -16,6 +16,8 @@ import Magnifier from "@/pages/Magnifier/Magnifier"
 import ConvertVideo from "@/pages/ConvertVideo/ConvertVideo"
 import ConvertOptions from "@/pages/ConvertOptions/ConvertOptions"
 import Ocr from "@/pages/Ocr"
+import CanvasDemo from "@/pages/CanvasDemo"
+
 
 export default createBrowserRouter([
   {
@@ -53,5 +55,9 @@ export default createBrowserRouter([
   {
     path: '/OCR',
     element: <Ocr />
+  },
+  {
+    path: '/canvasDemo',
+    element: <CanvasDemo />
   }
 ])
