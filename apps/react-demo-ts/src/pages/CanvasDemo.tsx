@@ -33,6 +33,7 @@ function CanvasDemo(props: Props) {
     height = '150px',
     textAlign = 'center',
     textBaseline = 'middle',
+    font = '20px microsoft yahei',
     rotate = 30,
   }: any) => {
     const canvas = document.createElement('canvas')
@@ -43,7 +44,7 @@ function CanvasDemo(props: Props) {
     ctx.fillRect(0, 0, 800, 450)
     ctx.textAlign = textAlign
     ctx.textBaseline = textBaseline
-    ctx.font = '20px microsoft yahei'
+    ctx.font = font
     ctx.rotate(Math.PI / 180 * rotate)
     ctx.fillText(content, parseFloat(width) / 2, parseFloat(height) / 2);
     const base64 = canvas.toDataURL('image/png')
