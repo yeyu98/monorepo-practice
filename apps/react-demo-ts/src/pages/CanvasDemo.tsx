@@ -2,7 +2,7 @@
  * @Author: yeyu98
  * @Date: 2024-04-30 14:38:15
  * @LastEditors: yeyu98
- * @LastEditTime: 2024-06-24 15:30:04
+ * @LastEditTime: 2024-06-24 16:20:44
  * @FilePath: \monorepo-practice\apps\react-demo-ts\src\pages\CanvasDemo.tsx
  * @Description: 
  */
@@ -20,7 +20,7 @@ interface Props {}
 // 水印
 /*
   绘制水印最终生成图片插入到指定元素背景中
-
+  使用MutationObserver监测元素节点的增减、属性的变动、文本内容的变动
 */ 
 
 function CanvasDemo(props: Props) {
@@ -51,17 +51,49 @@ function CanvasDemo(props: Props) {
     return base64
   }
 
-  useEffect(() => {
+  const generate = () => {
     const base64 = watermark({})
-    watermarkRef.current?.setAttribute('style', `
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background-repeat: repeat;
-      background-image: url('${base64}');
-    `)
+    const container = watermarkRef.current
+    if(container) {
+      const watermarkContent = document.createElement('div')
+      watermarkContent?.setAttribute('style', `
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-repeat: repeat;
+        background-image: url('${base64}');
+      `)
+      watermarkRef.current?.appendChild(watermarkContent)
+      const callback = (mutationsList: any) => {
+        mutationsList.forEach((mutation: any) => {
+          switch (mutation.type) {
+            case 'attributes': 
+              // 重新赋值样式即可
+              // 也可以移除掉再重新生成
+              observer.disconnect();
+              generate()
+            break;
+            case 'childList': 
+              // 重新生成
+              observer.disconnect();
+              generate()
+            break;
+          }
+        })
+      }
+      const observer = new MutationObserver(callback)
+      observer.observe(container, {
+        childList: true, // 子节点新增或删除
+        attributes: true, // 属性发生变动,
+        subtree: true // 后代节点发生childList或attributes变动或其他的变动
+      })
+    }
+  }
+
+  useEffect(() => {
+    generate()
   }, [])
 
   return (
