@@ -1,8 +1,8 @@
 /*
  * @Author: xiaohu
  * @Date: 2022-12-07 15:34:10
- * @LastEditors: lzy-Jerry
- * @LastEditTime: 2023-08-30 20:51:16
+ * @LastEditors: yeyu98
+ * @LastEditTime: 2024-07-02 22:34:19
  * @FilePath: \react-demo-ts\vite.config.ts
  * @Description: 
  */
@@ -23,7 +23,23 @@ export default defineConfig({
     minify: false
   },
   server: {
-    open: false // 是否自动打开浏览器
+    open: false, // 是否自动打开浏览器
+    proxy: {
+      "/api": {
+        target: "https://www.duitang.com",
+        changeOrigin: true,
+        rewrite: (path) => {
+          console.log(path.replace(/^\/api/, ""))
+          return path.replace(/^\/api/, "")
+        },
+        
+      }
+      // '/api': {
+      //   target: 'http://jsonplaceholder.typicode.com',
+      //   changeOrigin: true,
+      //   rewrite: (path) => path.replace(/^\/api/, ''),
+      // },
+    }
   }
   // server: {
   //   port: 80,

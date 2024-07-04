@@ -9,8 +9,8 @@
     "lint": {},
     "start": {
       "dependsOn": ["^start"],
-      "cache": true,
-      "persistent": true
+      "cache": false,
+      "persistent": false
     }
   }
 }
