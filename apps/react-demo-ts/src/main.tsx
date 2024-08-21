@@ -1,9 +1,9 @@
 /*
  * @Author: xiaohu
  * @Date: 2022-12-07 15:34:10
- * @LastEditors: lzy-Jerry
- * @LastEditTime: 2023-10-10 21:56:56
- * @FilePath: \Explores\apps\react-demo-ts\src\main.tsx
+ * @LastEditors: yeyu98
+ * @LastEditTime: 2024-08-21 16:45:54
+ * @FilePath: \monorepo-practice\apps\react-demo-ts\src\main.tsx
  * @Description: 
  */
 import ReactDOM from 'react-dom/client'
@@ -12,6 +12,9 @@ import router from "./router/index"
 import { Provider } from 'react-redux'
 import store from '@/store/redux/index'
 import './index.less'
+import WebVitals from './utils/WebVitals'
+
+new WebVitals()
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <Provider store={store}>
