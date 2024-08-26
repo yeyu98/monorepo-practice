@@ -2,7 +2,7 @@
  * @Author: yeyu98
  * @Date: 2024-08-21 14:36:31
  * @LastEditors: yeyu98
- * @LastEditTime: 2024-08-26 16:09:03
+ * @LastEditTime: 2024-08-26 17:14:59
  * @FilePath: \monorepo-practice\apps\react-demo-ts\src\utils\WebVitals.ts
  * @Description: 
  */
@@ -24,6 +24,9 @@ const afterLoad = (callback: any) => {
 }
 
 const observe = (type: string, callback: any) => {
+  console.log('🥳🥳🥳 ~~ observe ~~ type--->>>', type)
+  console.log('🥳🥳🥳 ~~ observe ~~ PerformanceObserver?.supportedEntryTypes.includes(type)--->>>', PerformanceObserver?.supportedEntryTypes)
+
   if(PerformanceObserver?.supportedEntryTypes.includes(type)) {
     const performanceObserver = new PerformanceObserver((l) => l.getEntries().forEach(callback))
      performanceObserver.observe({
@@ -45,7 +48,6 @@ class WebVitals {
     this.initLCP()
     this.initCLS()
 
-
     // 暂时先将初始化的内容都放在页面加载完成之后获取
     afterLoad(() => {
       this.initFP()
@@ -64,15 +66,16 @@ class WebVitals {
           entry
         }
         this.metrics.set(MetricType.FP, metric)
-        // console.log('initFP', this.metrics.getValues())
+        console.log('initFP', this.metrics.getValues())
       }
     })
   }
   initFCP() {
     onFCP((fcpMetric) => {
       const {entries} = fcpMetric
+      console.log('🥳🥳🥳 ~~ WebVitals ~~ onFCP ~~ fcpMetric--->>>', fcpMetric)
       for(const entry of entries) {
-        console.log('🥳🥳🥳 ~~ WebVitals ~~ onFCP ~~ entry--->>>', entry)
+        // console.log('🥳🥳🥳 ~~ WebVitals ~~ onFCP ~~ entry--->>>', entry)
         if(entry.name === MetricType.FCP) {
           const metric = {
             startTime: entry.startTime,
@@ -86,7 +89,7 @@ class WebVitals {
   }
   initLCP() {
     // NOTE 为何无法在界面加载完成之后直接获取呢，需要切换tab才行？
-    // LCP需要与界面产生交互之后才会触发
+    // LCP需要与界面产生交互之后才会触发，或者转入后台再激活时才会触发
     onLCP((lcpMetric) => {
       const { entries } = lcpMetric
       console.log('🥳🥳🥳 ~~ WebVitals ~~ onLCP ~~ lcpMetric--->>>', lcpMetric)
@@ -100,9 +103,12 @@ class WebVitals {
           // console.log('initLCP', this.metrics.getValues())
         }
       }
+    }, {
+      reportAllChanges: true
     })
   }
   initCLS() {
+    // NOTE 转入后台再激活时才会触发
     onCLS((clsMetric) => {
       const {entries} = clsMetric
       console.log('🥳🥳🥳 ~~ WebVitals ~~ onCLS ~~ clsMetric--->>>', clsMetric)
@@ -115,6 +121,9 @@ class WebVitals {
           this.metrics.set(MetricType.CLS, metric)
         }
       }
+    },
+    {
+      reportAllChanges: true
     })
   }
   initFID() {}

@@ -2,8 +2,8 @@
  * @Author: Jerry
  * @Date: 2023-03-03 10:32:42
  * @LastEditors: yeyu98
- * @LastEditTime: 2024-06-11 21:45:12
- * @FilePath: \Explores\apps\react-demo-ts\src\router\index.tsx
+ * @LastEditTime: 2024-08-26 16:20:18
+ * @FilePath: \monorepo-practice\apps\react-demo-ts\src\router\index.tsx
  * @Description: 
  */
 import { createBrowserRouter } from "react-router-dom"
