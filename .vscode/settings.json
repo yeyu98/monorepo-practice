@@ -4,6 +4,7 @@
         "tailwindcss",
         "tinyint",
         "typeorm",
+        "vconsole",
         "yeyu"
     ],
     "files.eol": "\n"

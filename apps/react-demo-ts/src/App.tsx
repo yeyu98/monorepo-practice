@@ -2,7 +2,7 @@
  * @Author: xiaohu
  * @Date: 2022-12-07 15:34:10
  * @LastEditors: yeyu98
- * @LastEditTime: 2024-08-26 11:54:47
+ * @LastEditTime: 2024-08-26 16:10:52
  * @FilePath: \monorepo-practice\apps\react-demo-ts\src\App.tsx
  * @Description: 
  */
@@ -55,7 +55,12 @@ const App: FC<IProps> = (props) => {
       {
         loading ? null : <div style={{width: '100px', height: '100px', background: '#1677ff'}}></div>
       }
-     
+           {
+        loading ? null : <div style={{width: '100px', height: '100px', background: '#1677ff'}}></div>
+      }
+            {
+        loading ? null : <div style={{width: '100px', height: '100px', background: '#1677ff'}}></div>
+      }
     </div>
   )
 }

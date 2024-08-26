@@ -2,7 +2,7 @@
  * @Author: yeyu98
  * @Date: 2024-08-21 14:36:31
  * @LastEditors: yeyu98
- * @LastEditTime: 2024-08-26 11:25:25
+ * @LastEditTime: 2024-08-26 16:09:03
  * @FilePath: \monorepo-practice\apps\react-demo-ts\src\utils\WebVitals.ts
  * @Description: 
  */
@@ -43,13 +43,14 @@ class WebVitals {
   constructor() {
 
     this.initLCP()
+    this.initCLS()
+
 
     // 暂时先将初始化的内容都放在页面加载完成之后获取
     afterLoad(() => {
       this.initFP()
       this.initFCP()
       this.initFID()
-      this.initCLS()
       this.initNavigationTiming()
       this.initResourceFlow()
     })
@@ -63,7 +64,7 @@ class WebVitals {
           entry
         }
         this.metrics.set(MetricType.FP, metric)
-        console.log('initFP', this.metrics.getValues())
+        // console.log('initFP', this.metrics.getValues())
       }
     })
   }
@@ -78,13 +79,14 @@ class WebVitals {
             entry
           }
           this.metrics.set(MetricType.FCP, metric)
-          console.log('initFCP', this.metrics.getValues())
+          // console.log('initFCP', this.metrics.getValues())
         }
       }
     })
   }
   initLCP() {
     // NOTE 为何无法在界面加载完成之后直接获取呢，需要切换tab才行？
+    // LCP需要与界面产生交互之后才会触发
     onLCP((lcpMetric) => {
       const { entries } = lcpMetric
       console.log('🥳🥳🥳 ~~ WebVitals ~~ onLCP ~~ lcpMetric--->>>', lcpMetric)
@@ -95,19 +97,24 @@ class WebVitals {
             entry
           }
           this.metrics.set(MetricType.LCP, metric)
-          console.log('initLCP', this.metrics.getValues())
+          // console.log('initLCP', this.metrics.getValues())
         }
       }
     })
-
-    // observe(MetricType.LCP, (entry: any) => {
-    // console.log('🥳🥳🥳 ~~ WebVitals ~~ observe ~~ entry--->>>', entry)
-    // })
   }
   initCLS() {
     onCLS((clsMetric) => {
-      const {} = clsMetric
+      const {entries} = clsMetric
       console.log('🥳🥳🥳 ~~ WebVitals ~~ onCLS ~~ clsMetric--->>>', clsMetric)
+      for(const entry of entries) {
+        if(entry.entryType === 'layout-shift') {
+          const metric = {
+            startTime: entry.value,
+            entry
+          }
+          this.metrics.set(MetricType.CLS, metric)
+        }
+      }
     })
   }
   initFID() {}
