@@ -2,8 +2,8 @@
  * @Author: xiaohu
  * @Date: 2022-12-07 15:34:10
  * @LastEditors: yeyu98
- * @LastEditTime: 2024-01-09 21:40:18
- * @FilePath: \Explores\apps\react-demo-ts\src\App.tsx
+ * @LastEditTime: 2024-08-26 11:54:47
+ * @FilePath: \monorepo-practice\apps\react-demo-ts\src\App.tsx
  * @Description: 
  */
 import { FC, useEffect, useState, Fragment } from "react"
@@ -17,6 +17,7 @@ interface IProps {
 
 const App: FC<IProps> = (props) => {
 
+  const [loading, setLoading] = useState<boolean>(true)
   const [navList, setNavList] = useState<string []>([])
   const navigate = useNavigate()
 
@@ -32,10 +33,14 @@ const App: FC<IProps> = (props) => {
       }
     })
     setNavList(_navList) 
+    setTimeout(() => {
+      setLoading(false)
+    }, 1000);
   }, [])
   
   return (
     <div className="App">
+     
       {
         navList?.map((nav, index) => {
           return <Fragment key={nav}>
@@ -47,6 +52,10 @@ const App: FC<IProps> = (props) => {
           </Fragment>
         })
       }
+      {
+        loading ? null : <div style={{width: '100px', height: '100px', background: '#1677ff'}}></div>
+      }
+     
     </div>
   )
 }

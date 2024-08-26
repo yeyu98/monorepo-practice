@@ -2,7 +2,7 @@
  * @Author: yeyu98
  * @Date: 2024-08-21 14:36:31
  * @LastEditors: yeyu98
- * @LastEditTime: 2024-08-26 11:14:44
+ * @LastEditTime: 2024-08-26 11:25:25
  * @FilePath: \monorepo-practice\apps\react-demo-ts\src\utils\WebVitals.ts
  * @Description: 
  */
@@ -98,11 +98,19 @@ class WebVitals {
           console.log('initLCP', this.metrics.getValues())
         }
       }
-      
+    })
+
+    // observe(MetricType.LCP, (entry: any) => {
+    // console.log('🥳🥳🥳 ~~ WebVitals ~~ observe ~~ entry--->>>', entry)
+    // })
+  }
+  initCLS() {
+    onCLS((clsMetric) => {
+      const {} = clsMetric
+      console.log('🥳🥳🥳 ~~ WebVitals ~~ onCLS ~~ clsMetric--->>>', clsMetric)
     })
   }
   initFID() {}
-  initCLS() {}
   initNavigationTiming() {}
   initResourceFlow() {}
 
