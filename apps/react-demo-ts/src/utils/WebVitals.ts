@@ -2,7 +2,7 @@
  * @Author: yeyu98
  * @Date: 2024-08-21 14:36:31
  * @LastEditors: yeyu98
- * @LastEditTime: 2024-08-26 17:14:59
+ * @LastEditTime: 2024-08-26 22:51:17
  * @FilePath: \monorepo-practice\apps\react-demo-ts\src\utils\WebVitals.ts
  * @Description: 
  */
@@ -24,8 +24,8 @@ const afterLoad = (callback: any) => {
 }
 
 const observe = (type: string, callback: any) => {
-  console.log('🥳🥳🥳 ~~ observe ~~ type--->>>', type)
-  console.log('🥳🥳🥳 ~~ observe ~~ PerformanceObserver?.supportedEntryTypes.includes(type)--->>>', PerformanceObserver?.supportedEntryTypes)
+  // console.log('🥳🥳🥳 ~~ observe ~~ type--->>>', type)
+  // console.log('🥳🥳🥳 ~~ observe ~~ PerformanceObserver?.supportedEntryTypes.includes(type)--->>>', PerformanceObserver?.supportedEntryTypes)
 
   if(PerformanceObserver?.supportedEntryTypes.includes(type)) {
     const performanceObserver = new PerformanceObserver((l) => l.getEntries().forEach(callback))
@@ -126,7 +126,23 @@ class WebVitals {
       reportAllChanges: true
     })
   }
-  initFID() {}
+  initFID() {
+    onFID((fidMetric) => {
+      console.log("✨✨🥰  ~ WebVitals ~ onFID ~ fidMetric--->>>", fidMetric)
+      const {entries} = fidMetric
+      for(const entry of entries) {
+        if(entry.entryType === 'first-input') {
+          console.log("✨✨🥰  ~ WebVitals ~ onFID ~ entry--->>>", entry)
+          const delay = entry.processingStart - entry.startTime
+          const metric = {
+            delay,
+            entry
+          }
+          this.metrics.set(MetricType.FID, metric)
+        }
+      }
+    })
+  }
   initNavigationTiming() {}
   initResourceFlow() {}
 
