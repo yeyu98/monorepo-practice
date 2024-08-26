@@ -2,7 +2,7 @@
  * @Author: yeyu98
  * @Date: 2024-08-21 14:36:31
  * @LastEditors: yeyu98
- * @LastEditTime: 2024-08-21 16:58:16
+ * @LastEditTime: 2024-08-26 11:14:44
  * @FilePath: \monorepo-practice\apps\react-demo-ts\src\utils\WebVitals.ts
  * @Description: 
  */
@@ -41,15 +41,17 @@ class WebVitals {
   metrics: MetricsStore = new MetricsStore()
 
   constructor() {
+
+    this.initLCP()
+
     // 暂时先将初始化的内容都放在页面加载完成之后获取
     afterLoad(() => {
       this.initFP()
       this.initFCP()
-      this.initLCP()
       this.initFID()
       this.initCLS()
       this.initNavigationTiming()
-      this.initResourceFlow() 
+      this.initResourceFlow()
     })
   }
 
@@ -69,11 +71,36 @@ class WebVitals {
     onFCP((fcpMetric) => {
       const {entries} = fcpMetric
       for(const entry of entries) {
-        if(entry.name === MetricType.FCP) {}
+        console.log('🥳🥳🥳 ~~ WebVitals ~~ onFCP ~~ entry--->>>', entry)
+        if(entry.name === MetricType.FCP) {
+          const metric = {
+            startTime: entry.startTime,
+            entry
+          }
+          this.metrics.set(MetricType.FCP, metric)
+          console.log('initFCP', this.metrics.getValues())
+        }
       }
     })
   }
-  initLCP() {}
+  initLCP() {
+    // NOTE 为何无法在界面加载完成之后直接获取呢，需要切换tab才行？
+    onLCP((lcpMetric) => {
+      const { entries } = lcpMetric
+      console.log('🥳🥳🥳 ~~ WebVitals ~~ onLCP ~~ lcpMetric--->>>', lcpMetric)
+      for(const entry of entries) {
+        if(entry.entryType === MetricType.LCP) {
+          const metric = {
+            startTime: entry.startTime,
+            entry
+          }
+          this.metrics.set(MetricType.LCP, metric)
+          console.log('initLCP', this.metrics.getValues())
+        }
+      }
+      
+    })
+  }
   initFID() {}
   initCLS() {}
   initNavigationTiming() {}

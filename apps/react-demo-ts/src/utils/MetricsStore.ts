@@ -1,9 +1,9 @@
 export const enum MetricType { 
   FP = 'first-paint',
   FCP = 'first-contentful-paint',
-  LCP = 'large-contentful-paint',
-  FID = 'first-input-delay',
+  LCP = 'largest-contentful-paint',
   CLS = 'cumulative-layout-shift',
+  FID = 'first-input-delay',
   NT = 'navigation-timing',
   RL = 'resource-flow'
 }
