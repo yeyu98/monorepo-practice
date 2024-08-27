@@ -2,7 +2,7 @@
  * @Author: yeyu98
  * @Date: 2024-08-21 14:36:31
  * @LastEditors: yeyu98
- * @LastEditTime: 2024-08-26 22:51:17
+ * @LastEditTime: 2024-08-27 14:49:00
  * @FilePath: \monorepo-practice\apps\react-demo-ts\src\utils\WebVitals.ts
  * @Description: 
  */
@@ -21,6 +21,13 @@ const afterLoad = (callback: any) => {
       callback()
     })
   }
+}
+
+const getNavigationTiming = () => {
+  if(performance.getEntriesByType('navigation')?.length > 0) {
+    return performance.getEntriesByType('navigation')[0]
+  }
+  return performance.timing
 }
 
 const observe = (type: string, callback: any) => {
@@ -143,7 +150,45 @@ class WebVitals {
       }
     })
   }
-  initNavigationTiming() {}
+  initNavigationTiming() {
+    const navigationTiming = getNavigationTiming()
+    const {
+      fetchStart,
+      domainLookupStart,
+      domainLookupEnd,
+      secureConnectionStart,
+      connectStart,
+      connectEnd,
+      requestStart,
+      responseStart,
+      responseEnd,
+      domInteractive,
+      // domContentLoadedEventStart,
+      domContentLoadedEventEnd,
+      // domComplete,
+      loadEventStart
+    } = navigationTiming
+    console.log('🥳🥳🥳 ~~ WebVitals ~~ initNavigationTiming ~~ navigationTiming--->>>', navigationTiming)
+    const metric = {
+      // 关键时间点
+      FP: responseEnd - fetchStart, // 首屏渲染时间
+      TTI: domInteractive - fetchStart, // 首次可交互时间
+      DomReady: domContentLoadedEventEnd - fetchStart, // Dom加载完成的时间
+      Load: loadEventStart - fetchStart, // dom和资源都加载完成的时间
+      FirstByte: responseStart - domainLookupStart, // 第一个字节接收时间
+      // 关键时间段
+      DNS: domainLookupEnd - domainLookupStart, // 域名解析时间
+      TCP: connectEnd - connectStart, // 建立TCP连接耗时
+      SSL: connectEnd - (secureConnectionStart > 0 ? secureConnectionStart : connectStart), // 建立SSL安全连接耗时
+      TTFB: responseStart - requestStart, // 请求响应耗时
+      Trans: responseEnd - responseStart, // 请求内容传输耗时
+      DOM: domInteractive - responseEnd, // dom解析耗时
+      Res: loadEventStart - domContentLoadedEventEnd // 资源加载耗时
+    }
+    console.log('🥳🥳🥳 ~~ WebVitals ~~ initNavigationTiming ~~ metric--->>>', metric)
+    this.metrics.set(MetricType.NT, metric)
+    console.log('🥳🥳🥳 ~~ WebVitals ~~ initNavigationTiming ~~ this.metrics--->>>', this.metrics)
+  }
   initResourceFlow() {}
 
   // 何时上报
