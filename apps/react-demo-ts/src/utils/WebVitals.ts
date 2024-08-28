@@ -2,7 +2,7 @@
  * @Author: yeyu98
  * @Date: 2024-08-21 14:36:31
  * @LastEditors: yeyu98
- * @LastEditTime: 2024-08-27 14:49:00
+ * @LastEditTime: 2024-08-28 10:03:12
  * @FilePath: \monorepo-practice\apps\react-demo-ts\src\utils\WebVitals.ts
  * @Description: 
  */
@@ -189,7 +189,51 @@ class WebVitals {
     this.metrics.set(MetricType.NT, metric)
     console.log('🥳🥳🥳 ~~ WebVitals ~~ initNavigationTiming ~~ this.metrics--->>>', this.metrics)
   }
-  initResourceFlow() {}
+  initResourceFlow() {
+    const result: any = []
+    // resource
+    const ob = observe('resource', (entry: PerformanceResourceTiming) => {
+      const {
+        name,
+        transferSize,
+        initiatorType,
+        startTime,
+        domainLookupStart,
+        domainLookupEnd,
+        connectStart,
+        secureConnectionStart,
+        connectEnd,
+        requestStart,
+        responseStart,
+        responseEnd
+      } = entry
+      result.push({
+        name, // 资源地址
+        transferSize, // 资源大小
+        initiatorType, // 资源类型
+        startTime, // 开始时间
+        responseEnd, // 请求结束时间
+        dnsLookup: domainLookupEnd - domainLookupStart, // 
+        initialConnect: connectEnd - connectStart,
+        ssl: connectEnd - secureConnectionStart,
+        request: responseStart - requestStart,
+        ttfb: responseStart - requestStart, // 
+        contentDownload: responseEnd - responseStart
+      })
+    })
+    // console.log('🥳🥳🥳 ~~ WebVitals ~~ ob ~~ ob--->>>', ob)
+
+    // NOTE 触发时机需要考虑一下
+    window.addEventListener('pagehide', () => {
+      if(ob) {
+        ob.disconnect()
+      }
+      const metric = {
+        entry: result
+      }
+      this.metrics.set(MetricType.RL, metric)
+    })
+  }
 
   // 何时上报
   report() {}
