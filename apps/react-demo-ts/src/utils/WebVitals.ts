@@ -2,7 +2,7 @@
  * @Author: yeyu98
  * @Date: 2024-08-21 14:36:31
  * @LastEditors: yeyu98
- * @LastEditTime: 2024-08-28 10:03:12
+ * @LastEditTime: 2024-08-28 11:16:06
  * @FilePath: \monorepo-practice\apps\react-demo-ts\src\utils\WebVitals.ts
  * @Description: 
  */
@@ -191,7 +191,7 @@ class WebVitals {
   }
   initResourceFlow() {
     const result: any = []
-    // resource
+    // resource 
     const ob = observe('resource', (entry: PerformanceResourceTiming) => {
       const {
         name,
@@ -213,7 +213,7 @@ class WebVitals {
         initiatorType, // 资源类型
         startTime, // 开始时间
         responseEnd, // 请求结束时间
-        dnsLookup: domainLookupEnd - domainLookupStart, // 
+        dnsLookup: domainLookupEnd - domainLookupStart, // dns解析
         initialConnect: connectEnd - connectStart,
         ssl: connectEnd - secureConnectionStart,
         request: responseStart - requestStart,
