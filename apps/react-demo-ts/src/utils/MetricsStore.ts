@@ -1,4 +1,4 @@
-export const enum MetricType { 
+export const enum WebMetricType { 
   FP = 'first-paint',
   FCP = 'first-contentful-paint',
   LCP = 'largest-contentful-paint',

@@ -7,7 +7,7 @@
  * @Description: 
  */
 
-import {MetricsStore, MetricType} from './MetricsStore'
+import {MetricsStore, WebMetricType} from './MetricsStore'
 import {onFCP, onLCP, onCLS, onFID} from 'web-vitals'
 
 const afterLoad = (callback: any) => {
@@ -67,12 +67,12 @@ class WebVitals {
 
   initFP() {
     observe('paint', (entry: any) => {
-      if(entry.name === MetricType.FP) {
+      if(entry.name === WebMetricType.FP) {
         const metric = {
           startTime: entry.startTime,
           entry
         }
-        this.metrics.set(MetricType.FP, metric)
+        this.metrics.set(WebMetricType.FP, metric)
         console.log('initFP', this.metrics.getValues())
       }
     })
@@ -83,12 +83,12 @@ class WebVitals {
       console.log('🥳🥳🥳 ~~ WebVitals ~~ onFCP ~~ fcpMetric--->>>', fcpMetric)
       for(const entry of entries) {
         // console.log('🥳🥳🥳 ~~ WebVitals ~~ onFCP ~~ entry--->>>', entry)
-        if(entry.name === MetricType.FCP) {
+        if(entry.name === WebMetricType.FCP) {
           const metric = {
             startTime: entry.startTime,
             entry
           }
-          this.metrics.set(MetricType.FCP, metric)
+          this.metrics.set(WebMetricType.FCP, metric)
           // console.log('initFCP', this.metrics.getValues())
         }
       }
@@ -101,12 +101,12 @@ class WebVitals {
       const { entries } = lcpMetric
       console.log('🥳🥳🥳 ~~ WebVitals ~~ onLCP ~~ lcpMetric--->>>', lcpMetric)
       for(const entry of entries) {
-        if(entry.entryType === MetricType.LCP) {
+        if(entry.entryType === WebMetricType.LCP) {
           const metric = {
             startTime: entry.startTime,
             entry
           }
-          this.metrics.set(MetricType.LCP, metric)
+          this.metrics.set(WebMetricType.LCP, metric)
           // console.log('initLCP', this.metrics.getValues())
         }
       }
@@ -125,7 +125,7 @@ class WebVitals {
             startTime: entry.value,
             entry
           }
-          this.metrics.set(MetricType.CLS, metric)
+          this.metrics.set(WebMetricType.CLS, metric)
         }
       }
     },
@@ -145,7 +145,7 @@ class WebVitals {
             delay,
             entry
           }
-          this.metrics.set(MetricType.FID, metric)
+          this.metrics.set(WebMetricType.FID, metric)
         }
       }
     })
@@ -186,7 +186,7 @@ class WebVitals {
       Res: loadEventStart - domContentLoadedEventEnd // 资源加载耗时
     }
     console.log('🥳🥳🥳 ~~ WebVitals ~~ initNavigationTiming ~~ metric--->>>', metric)
-    this.metrics.set(MetricType.NT, metric)
+    this.metrics.set(WebMetricType.NT, metric)
     console.log('🥳🥳🥳 ~~ WebVitals ~~ initNavigationTiming ~~ this.metrics--->>>', this.metrics)
   }
   initResourceFlow() {
@@ -231,7 +231,7 @@ class WebVitals {
       const metric = {
         entry: result
       }
-      this.metrics.set(MetricType.RL, metric)
+      this.metrics.set(WebMetricType.RL, metric)
     })
   }
 
