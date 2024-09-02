@@ -7,7 +7,7 @@ export const enum WebMetricType {
   NT = 'navigation-timing',
   RL = 'resource-flow'
 }
-type MetricsKey = MetricType | 'string'
+type MetricsKey = WebMetricType | 'string'
 
 export class MetricsStore {
   state = new Map<MetricsKey, any>()
