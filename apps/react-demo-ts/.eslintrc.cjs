@@ -1,8 +1,8 @@
 /*
  * @Author: lzy-Jerry
  * @Date: 2023-08-01 21:20:24
- * @LastEditors: lzy-Jerry
- * @LastEditTime: 2023-08-01 21:24:07
+ * @LastEditors: yeyu98
+ * @LastEditTime: 2024-09-02 17:57:18
  * @Description: 
  */
 module.exports = {
@@ -12,7 +12,9 @@ module.exports = {
     },
     "extends": [
         "standard-with-typescript",
-        "plugin:react/recommended"
+        "plugin:react/recommended",
+        "plugin:react-hooks/recommended",
+        'plugin:prettier/recommended',
     ],
     "overrides": [
         {
