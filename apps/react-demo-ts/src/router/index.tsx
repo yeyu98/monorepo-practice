@@ -2,11 +2,12 @@
  * @Author: Jerry
  * @Date: 2023-03-03 10:32:42
  * @LastEditors: yeyu98
- * @LastEditTime: 2024-08-26 22:36:13
+ * @LastEditTime: 2024-09-02 17:50:24
  * @FilePath: \monorepo-practice\apps\react-demo-ts\src\router\index.tsx
  * @Description: 
  */
 import { lazy, Suspense } from "react"
+import {Spin} from 'antd'
 import { createBrowserRouter } from "react-router-dom"
 // import App from "@/App"
 // import Demos from "@/pages/Demos"
@@ -30,47 +31,52 @@ const ConvertVideo = lazy(() => import('@/pages/ConvertVideo/ConvertVideo'))
 const ConvertOptions = lazy(() => import('@/pages/ConvertOptions/ConvertOptions'))
 const Ocr = lazy(() => import('@/pages/Ocr'))
 const CanvasDemo = lazy(() => import('@/pages/CanvasDemo'))
+const SuspenseComponent = (Component: any) => {
+  return <Suspense fallback={<div className="w-full h-full flex justify-center items-center"><Spin /></div>}><Component /></Suspense>
+}
 
-
-export default createBrowserRouter([
+const baseRoute = [
   {
     path: "/",
-    element: <App />
+    element: SuspenseComponent(App)
   },
   {
     path: "/danceText",
-    element: <DanceText />
+    element: SuspenseComponent(DanceText)
   },
   {
     path: "/demos",
-    element: <Demos />
+    element: SuspenseComponent(Demos)
   },
   {
     path: "/series",
-    element: <Series />
+    element: SuspenseComponent(Series)
   },
   {
     path: "/nestTest",
-    element: <NestTest />
+    element: SuspenseComponent(NestTest)
   },
   {
     path: '/magnifier',
-    element: <Magnifier />
+    element: SuspenseComponent(Magnifier)
   },
   {
     path: '/convertVideo',
-    element: <ConvertVideo />
+    element: SuspenseComponent(ConvertVideo)
   },
   {
     path: '/convertOptions',
-    element: <ConvertOptions />
+    element: SuspenseComponent(ConvertOptions)
   },
   {
     path: '/OCR',
-    element: <Ocr />
+    element: SuspenseComponent(Ocr)
   },
   {
     path: '/canvasDemo',
-    element: <CanvasDemo />
+    element: SuspenseComponent(CanvasDemo)
   }
-])
+]
+
+
+export default createBrowserRouter(baseRoute)
