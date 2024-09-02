@@ -2,7 +2,7 @@
  * @Author: yeyu98
  * @Date: 2024-08-21 14:36:31
  * @LastEditors: yeyu98
- * @LastEditTime: 2024-08-29 11:30:25
+ * @LastEditTime: 2024-09-02 09:54:54
  * @FilePath: \monorepo-practice\apps\react-demo-ts\src\utils\WebVitals.ts
  * @Description: 
  */
@@ -49,7 +49,7 @@ const observe = (type: string, callback: any) => {
 
 class WebVitals {
   metrics: MetricsStore = new MetricsStore()
-  
+
   constructor() {
     this.initLCP()
     this.initCLS()
@@ -61,6 +61,7 @@ class WebVitals {
       this.initFID()
       this.initNavigationTiming()
       this.initResourceFlow()
+      this.report()
     })
   }
 
@@ -216,8 +217,8 @@ class WebVitals {
         initialConnect: connectEnd - connectStart,
         ssl: connectEnd - secureConnectionStart,
         request: responseStart - requestStart,
-        ttfb: responseStart - requestStart, // 
-        contentDownload: responseEnd - responseStart
+        ttfb: responseStart - requestStart, // 第一个字节传输
+        contentDownload: responseEnd - responseStart // 响应时间
       })
     })
     // console.log('🥳🥳🥳 ~~ WebVitals ~~ ob ~~ ob--->>>', ob)
@@ -235,7 +236,9 @@ class WebVitals {
   }
 
   // 何时上报
-  report() {}
+  report() {
+    console.log("this.metrics", this.metrics)
+  }
 }
 
 export default WebVitals
