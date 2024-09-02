@@ -2,7 +2,7 @@
  * @Author: yeyu98
  * @Date: 2024-08-21 14:36:31
  * @LastEditors: yeyu98
- * @LastEditTime: 2024-08-28 11:16:06
+ * @LastEditTime: 2024-08-29 11:30:25
  * @FilePath: \monorepo-practice\apps\react-demo-ts\src\utils\WebVitals.ts
  * @Description: 
  */
@@ -49,9 +49,8 @@ const observe = (type: string, callback: any) => {
 
 class WebVitals {
   metrics: MetricsStore = new MetricsStore()
-
+  
   constructor() {
-
     this.initLCP()
     this.initCLS()
 
