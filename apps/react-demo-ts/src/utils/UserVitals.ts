@@ -2,7 +2,7 @@
  * @Author: yeyu98
  * @Date: 2024-09-02 15:31:51
  * @LastEditors: yeyu98
- * @LastEditTime: 2024-09-03 11:36:47
+ * @LastEditTime: 2024-09-03 15:15:52
  * @FilePath: \monorepo-practice\apps\react-demo-ts\src\utils\UserVitals.ts
  * @Description: 
  */
@@ -10,6 +10,8 @@
 import {MetricsStore, UserMetricType} from './MetricsStore'
 import BehaviorStore from './BehaviorStack'
 import {afterLoad} from './WebVitals'
+
+/**************** 路由相关 ******************/ 
 
 const wr = (type: string) => {
   const target = history[type]
@@ -46,6 +48,75 @@ const proxyHash = (handler: any) => {
 const proxyHistory = (handler: any) => {
   window.addEventListener('pushState', e => handler(e), true)
   window.addEventListener('replaceState', e => handler(e), true)
+}
+
+/**************** HTTP相关 ******************/ 
+interface HttpMetric {
+  method: string
+  url: string
+  body: any
+  requestTime: number
+  responseTime: number
+  status: number
+  statusText: string
+  response: any
+}
+const proxyXMLHttp = (sendHandler: any, loadHandler: any) => {
+  if('XMLHttpRequest' in window && typeof XMLHttpRequest === 'function') { 
+    const _XMLHttpRequest = window.XMLHttpRequest
+    if(!(window as any)._XMLHttpRequest) { 
+      (window as any)._XMLHttpRequest = _XMLHttpRequest
+    }
+    (window as any).XMLHttpRequest = function() {
+      const xhr = new _XMLHttpRequest()
+      const {open, send} = xhr
+      let metric: Partial<HttpMetric> = {} 
+      // 建立连接
+      xhr.open = function(method: string, url: string) {
+        metric.method = method
+        metric.url = url
+        open.call(xhr, method, url,true)
+      }
+      // 发送请求
+      xhr.send = function(body) { 
+        metric.body = body || ''
+        metric.requestTime = Date.now()
+
+        if(typeof sendHandler === 'function') {
+          sendHandler(xhr)
+        }
+        send.call(xhr, body)
+      }
+      // 请求响应
+      xhr.addEventListener('loadend', () => {
+        const {response, status, statusText} = xhr
+        const responseTime = Date.now()
+        metric = {
+          ...metric,
+          responseTime,
+          status,
+          statusText,
+          response
+        }
+        if(typeof loadHandler === 'function') {
+          loadHandler(metric)
+        }
+      })
+      return xhr
+    }
+  }
+}
+
+const proxyFetch = (sendHandler: any, loadHandler: any) => {
+  if('fetch' in window && typeof fetch === 'function') {
+    const _fetch = window.fetch
+    if(!(window as any)._fetch) { 
+      (window as any)._fetch = _fetch
+    }
+    (window as any).fetch = function(input: string, init: RequestInit) {
+      
+    }
+  }
 }
 
 
