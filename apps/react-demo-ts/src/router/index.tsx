@@ -2,7 +2,7 @@
  * @Author: Jerry
  * @Date: 2023-03-03 10:32:42
  * @LastEditors: yeyu98
- * @LastEditTime: 2024-09-03 09:49:08
+ * @LastEditTime: 2024-09-03 11:24:22
  * @FilePath: \monorepo-practice\apps\react-demo-ts\src\router\index.tsx
  * @Description: 
  */
@@ -69,4 +69,4 @@ const baseRoute = [
 ]
 
 
-export default createHashRouter(baseRoute)
+export default createBrowserRouter(baseRoute)

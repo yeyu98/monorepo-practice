@@ -2,7 +2,7 @@
  * @Author: yeyu98
  * @Date: 2024-09-02 15:31:51
  * @LastEditors: yeyu98
- * @LastEditTime: 2024-09-03 10:51:36
+ * @LastEditTime: 2024-09-03 11:36:47
  * @FilePath: \monorepo-practice\apps\react-demo-ts\src\utils\UserVitals.ts
  * @Description: 
  */
@@ -160,7 +160,31 @@ export class UserVitals {
     proxyHash(handler)
     proxyHistory(handler)
   }
-  initClickBehaviorRecord() {}
+  initClickBehaviorRecord() {
+    const handler = (e: MouseEvent | any) => {
+      // 需要根据标签list过滤target
+      let target = e.composedPath().find((x:Element) => this.clickMountList.includes(x.tagName.toLowerCase()))
+      target = target || this.clickMountList.includes(e.target?.tagName.toLowerCase()) ? e.target : undefined
+      const metric = {
+        tagInfo: {
+          id: target.id,
+          classList: target.classList,
+          tagName: target.tagName.toLowerCase(),
+          text: target.textContent,
+        },
+        timestamp: Date.now(),
+        pageInfo: this.getPageInfo(),
+      }
+      this.userMetric.set(UserMetricType.CBR, metric)
+      delete metric.pageInfo;
+      this.breadcrumb.push({
+        name: UserMetricType.CBR,
+        value: metric,
+        ...this.getExtends()
+      })
+    }
+    window.addEventListener('click', e => handler(e), true)
+  }
   initCustomDefineRecord() {}
   initHttpRecord() {}
 }
