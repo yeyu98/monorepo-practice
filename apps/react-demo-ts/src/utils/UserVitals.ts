@@ -2,7 +2,7 @@
  * @Author: yeyu98
  * @Date: 2024-09-02 15:31:51
  * @LastEditors: yeyu98
- * @LastEditTime: 2024-09-03 16:12:23
+ * @LastEditTime: 2024-09-03 16:17:54
  * @FilePath: \monorepo-practice\apps\react-demo-ts\src\utils\UserVitals.ts
  * @Description: 
  */
@@ -133,7 +133,7 @@ const proxyFetch = (sendHandler: any, loadHandler: any) => {
         if(loadHandler && typeof loadHandler === 'function') {
           loadHandler(metric)
         }
-        
+
         return response
       })
     }
@@ -278,5 +278,23 @@ export class UserVitals {
     window.addEventListener('click', e => handler(e), true)
   }
   initCustomDefineRecord() {}
-  initHttpRecord() {}
+  initHttpRecord() {
+    const handler = (metric: HttpMetric) => {
+      if(metric.status < 400) {
+        delete metric.body
+        delete metric.response
+      }
+
+      this.userMetric.set(UserMetricType.HR, metric)
+
+      this.breadcrumb.push({
+        name: UserMetricType.HR,
+        value: metric,
+        ...this.getExtends()
+      })
+    }
+
+    proxyXMLHttp(null, handler)
+    proxyFetch(null, handler)
+  }
 }
