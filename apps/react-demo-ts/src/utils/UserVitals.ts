@@ -2,7 +2,7 @@
  * @Author: yeyu98
  * @Date: 2024-09-02 15:31:51
  * @LastEditors: yeyu98
- * @LastEditTime: 2024-09-03 15:15:52
+ * @LastEditTime: 2024-09-03 16:12:23
  * @FilePath: \monorepo-practice\apps\react-demo-ts\src\utils\UserVitals.ts
  * @Description: 
  */
@@ -113,8 +113,29 @@ const proxyFetch = (sendHandler: any, loadHandler: any) => {
     if(!(window as any)._fetch) { 
       (window as any)._fetch = _fetch
     }
-    (window as any).fetch = function(input: string, init: RequestInit) {
-      
+    (window as any).fetch = async function(input: any, init: RequestInit) {
+      let metric: Partial<HttpMetric> = {}
+      metric.method = init.method
+      metric.url = (input && typeof input !== 'string') ? input?.url : input || ''
+      metric.body = init?.body || ''
+      metric.requestTime = Date.now()
+
+      return _fetch.call(window, input, init).then(async (response) => {
+        const res = response.clone()
+        metric = {
+          ...metric,
+          status: res.status,
+          statusText: res.statusText,
+          responseTime: Date.now(),
+          response: await res.text()
+        }
+
+        if(loadHandler && typeof loadHandler === 'function') {
+          loadHandler(metric)
+        }
+        
+        return response
+      })
     }
   }
 }
