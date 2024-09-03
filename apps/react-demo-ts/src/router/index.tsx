@@ -2,13 +2,13 @@
  * @Author: Jerry
  * @Date: 2023-03-03 10:32:42
  * @LastEditors: yeyu98
- * @LastEditTime: 2024-09-03 09:13:01
+ * @LastEditTime: 2024-09-03 09:49:08
  * @FilePath: \monorepo-practice\apps\react-demo-ts\src\router\index.tsx
  * @Description: 
  */
 import { lazy, Suspense } from "react"
 import {Spin} from 'antd'
-import { createBrowserRouter } from "react-router-dom"
+import { createBrowserRouter, createHashRouter } from "react-router-dom"
 
 
 const App = lazy(() => import('@/App'))
@@ -69,4 +69,4 @@ const baseRoute = [
 ]
 
 
-export default createBrowserRouter(baseRoute)
+export default createHashRouter(baseRoute)

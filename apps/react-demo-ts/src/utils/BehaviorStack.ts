@@ -19,7 +19,7 @@ export interface behaviorStack {
 }
 
 // 暂存用户的行为记录追踪
-export default class behaviorStore {
+export default class BehaviorStore {
   // 数组形式的 stack
   private state: Array<behaviorStack>;
 

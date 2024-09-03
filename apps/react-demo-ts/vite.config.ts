@@ -2,8 +2,8 @@
  * @Author: xiaohu
  * @Date: 2022-12-07 15:34:10
  * @LastEditors: yeyu98
- * @LastEditTime: 2024-07-02 22:34:19
- * @FilePath: \react-demo-ts\vite.config.ts
+ * @LastEditTime: 2024-09-03 09:18:23
+ * @FilePath: \monorepo-practice\apps\react-demo-ts\vite.config.ts
  * @Description: 
  */
 import { defineConfig } from 'vite'
@@ -23,7 +23,7 @@ export default defineConfig({
     minify: false
   },
   server: {
-    open: false, // 是否自动打开浏览器
+    open: true, // 是否自动打开浏览器
     proxy: {
       "/api": {
         target: "https://www.duitang.com",
