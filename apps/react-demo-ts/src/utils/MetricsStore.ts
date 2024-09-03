@@ -1,3 +1,11 @@
+/*
+ * @Author: yeyu98
+ * @Date: 2024-08-21 14:51:05
+ * @LastEditors: yeyu98
+ * @LastEditTime: 2024-09-03 16:23:33
+ * @FilePath: \monorepo-practice\apps\react-demo-ts\src\utils\MetricsStore.ts
+ * @Description: 
+ */
 // 以用户体验为中心的指标：首屏渲染、首屏有意义内容渲染、最大有意义内容渲染、累积布局偏移、首次输入延迟
 // 以技术为中心的指标
 // 资源加载耗时
@@ -29,9 +37,6 @@ export const enum UserMetricType {
 // 页面停留时间
 // UserAgent解析
 // IP解析
-
-
-export const enum UserMetricType {}
 type MetricsKey = WebMetricType | UserMetricType | 'string'
 
 export class MetricsStore {

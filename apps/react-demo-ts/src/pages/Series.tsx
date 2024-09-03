@@ -2,8 +2,8 @@
  * @Author: xiaohu
  * @Date: 2023-06-27 11:25:18
  * @LastEditors: yeyu98
- * @LastEditTime: 2024-07-02 23:05:28
- * @FilePath: \Explores\apps\react-demo-ts\src\pages\Series.tsx
+ * @LastEditTime: 2024-09-03 16:31:25
+ * @FilePath: \monorepo-practice\apps\react-demo-ts\src\pages\Series.tsx
  * @Description: 
  */
 import React, { useEffect, useState } from 'react'
@@ -62,7 +62,7 @@ function Series(props: Props) {
   const queryImgList = (queryStr: string) => {
     axios.get(`${url}?${queryStr}`).then(({data}) => {
       const _list = data.data.object_list
-      console.log("✨✨🥰  ~ axios.get ~ _list--->>>", _list)
+      // console.log("✨✨🥰  ~ axios.get ~ _list--->>>", _list)
       setImgList((list) => [...list, ..._list])
     })
   }

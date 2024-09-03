@@ -2,7 +2,7 @@
  * @Author: xiaohu
  * @Date: 2022-12-07 15:34:10
  * @LastEditors: yeyu98
- * @LastEditTime: 2024-08-26 15:44:43
+ * @LastEditTime: 2024-09-03 16:24:50
  * @FilePath: \monorepo-practice\apps\react-demo-ts\src\main.tsx
  * @Description: 
  */
@@ -13,11 +13,14 @@ import { Provider } from 'react-redux'
 import store from '@/store/redux/index'
 import './index.less'
 import WebVitals from './utils/WebVitals'
+import UserVitals from './utils/UserVitals'
 import VConsole from 'vconsole'
 
 new VConsole()
 
-new WebVitals()
+// new WebVitals()
+
+new UserVitals()
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <Provider store={store}>

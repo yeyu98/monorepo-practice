@@ -2,7 +2,7 @@
  * @Author: yeyu98
  * @Date: 2024-09-02 15:31:51
  * @LastEditors: yeyu98
- * @LastEditTime: 2024-09-03 16:17:54
+ * @LastEditTime: 2024-09-03 16:37:17
  * @FilePath: \monorepo-practice\apps\react-demo-ts\src\utils\UserVitals.ts
  * @Description: 
  */
@@ -147,7 +147,7 @@ const getOriginInfo = () => ({
   sourceType: performance?.navigation?.type || ''
 })
 
-export class UserVitals {
+class UserVitals {
   private breadcrumb: BehaviorStore;
   private userMetric: MetricsStore;
   // 允许点击的标签比如 button、div、img等
@@ -215,6 +215,7 @@ export class UserVitals {
     const pageInfo = this.getPageInfo()
     const metric = pageInfo
     this.userMetric.set(UserMetricType.PI, metric)
+    console.log('🥳🥳🥳 ~~ UserVitals ~~ initPageInfo ~~ getPageInfo--->>>', this.userMetric)
   }
   initRouteChangeRecord() {
     const handler = (event: Event) => {
@@ -230,7 +231,9 @@ export class UserVitals {
         value: metric,
         ...this.getExtends()
       })
-      console.log('🥳🥳🥳 ~~ UserVitals ~~ handler ~~ this.breadcrumb--->>>', this.breadcrumb.get())
+      console.log('🥳🥳🥳 ~~ UserVitals ~~ initRouteChangeRecord ~~ this.breadcrumb--->>>', this.userMetric)
+
+      console.log('🥳🥳🥳 ~~ UserVitals ~~ initRouteChangeRecord ~~ this.breadcrumb--->>>', this.breadcrumb.get())
     }
     proxyHash(handler)
     proxyHistory(handler)
@@ -243,7 +246,7 @@ export class UserVitals {
         pageInfo: this.getPageInfo(),
         sourceInfo: getOriginInfo()
       }
-      console.log('🥳🥳🥳 ~~ UserVitals ~~ handler ~~ metric--->>>', metric)
+      console.log('🥳🥳🥳 ~~ UserVitals ~~ initPV ~~ metric--->>>', metric)
       // 上报...
     }
     afterLoad(() => {
@@ -274,6 +277,9 @@ export class UserVitals {
         value: metric,
         ...this.getExtends()
       })
+      console.log('🥳🥳🥳 ~~ UserVitals ~~ initClickBehaviorRecord ~~ this.userMetric--->>>', this.userMetric)
+
+      console.log('🥳🥳🥳 ~~ UserVitals ~~ initClickBehaviorRecord ~~ this.breadcrumb--->>>', this.breadcrumb)
     }
     window.addEventListener('click', e => handler(e), true)
   }
@@ -292,9 +298,14 @@ export class UserVitals {
         value: metric,
         ...this.getExtends()
       })
+      console.log('🥳🥳🥳 ~~ UserVitals ~~ initHttpRecord ~~ this.userMetric--->>>', this.userMetric)
+
+      console.log('🥳🥳🥳 ~~ UserVitals ~~ initHttpRecord ~~ this.breadcrumb--->>>', this.breadcrumb)
     }
 
     proxyXMLHttp(null, handler)
     proxyFetch(null, handler)
   }
 }
+
+export default UserVitals
