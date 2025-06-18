@@ -21,6 +21,9 @@ const ConvertVideo = lazy(() => import('@/pages/ConvertVideo/ConvertVideo'))
 const ConvertOptions = lazy(() => import('@/pages/ConvertOptions/ConvertOptions'))
 const Ocr = lazy(() => import('@/pages/Ocr'))
 const CanvasDemo = lazy(() => import('@/pages/CanvasDemo'))
+const VirtualScroll = lazy(() => import('@/pages/VirtualScroll'))
+
+
 const SuspenseComponent = (Component: any) => {
   return <Suspense fallback={<div className="w-full h-full flex justify-center items-center"><Spin /></div>}><Component /></Suspense>
 }
@@ -65,6 +68,10 @@ const baseRoute = [
   {
     path: '/canvasDemo',
     element: SuspenseComponent(CanvasDemo)
+  },
+  {
+    path: '/virtual-scroll',
+    element: SuspenseComponent(VirtualScroll)
   }
 ]
 
