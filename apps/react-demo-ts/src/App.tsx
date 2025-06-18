@@ -17,7 +17,7 @@ interface IProps {
 
 const App: FC<IProps> = (props) => {
 
-  const [loading, setLoading] = useState<boolean>(true)
+  // const [loading, setLoading] = useState<boolean>(true)
   const [navList, setNavList] = useState<string []>([])
   const navigate = useNavigate()
 
@@ -33,9 +33,9 @@ const App: FC<IProps> = (props) => {
       }
     })
     setNavList(_navList) 
-    setTimeout(() => {
-      setLoading(false)
-    }, 1000);
+    // setTimeout(() => {
+    //   setLoading(false)
+    // }, 1000);
   }, [])
   
   return (
@@ -52,9 +52,9 @@ const App: FC<IProps> = (props) => {
           </Fragment>
         })
       }
-      {
+      {/* {
         loading ? null : <div style={{width: '100px', height: '100px', background: '#1677ff'}}></div>
-      }
+      } */}
     </div>
   )
 }
